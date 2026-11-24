@@ -1,0 +1,4310 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>물건의 다음 생 — 버리기 전에, 한 번만 다시 생각해요</title>
+    <meta
+      name="description"
+      content="버리려는 물건 이름을 입력하면 누구나 안전하게 따라 할 수 있는 재사용·업사이클링 아이디어 3가지를 제안해 드립니다."
+    />
+    <meta property="og:title" content="물건의 다음 생 — 버리기 전에, 한 번만 다시 생각해요" />
+    <meta
+      property="og:description"
+      content="버리려는 물건 이름을 입력하면 누구나 안전하게 따라 할 수 있는 재사용·업사이클링 아이디어 3가지를 제안해 드립니다."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg-ivory: #faf7ee;
+        --surface-card: #ffffff;
+        --surface-soft: #f4efe0;
+        --ink-forest: #1f3a2b;
+        --ink-muted: #476253;
+        --ink-subtle: #597264;
+        --green-primary: #2e7d4f;
+        --green-hover: #256640;
+        --green-accent: #5fa777;
+        --green-tint: #e3f0e1;
+        --border-warm: #e6e0ce;
+        --border-input: #ddd7c3;
+        --amber-text: #b45309;
+        --amber-bg: #fef3c7;
+        --amber-border: #e7d4b5;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family:
+          "Pretendard Variable",
+          "Pretendard",
+          "Noto Sans KR",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Apple SD Gothic Neo",
+          "Malgun Gothic",
+          sans-serif;
+        background-color: var(--bg-ivory);
+        color: var(--ink-forest);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--bg-ivory);
+        color: var(--ink-forest);
+        display: flex;
+        flex-direction: column;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button:not(:disabled) {
+        cursor: pointer;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--green-primary);
+        outline-offset: 2px;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link:focus {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 50;
+        width: auto;
+        height: auto;
+        padding: 10px 16px;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+        border-radius: 12px;
+        background: var(--green-primary);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(31, 58, 43, 0.2);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Header */
+      .site-header {
+        width: 100%;
+        border-bottom: 1px solid var(--border-warm);
+        background: rgba(250, 247, 238, 0.92);
+        backdrop-filter: blur(6px);
+      }
+
+      .header-inner {
+        max-width: 1152px;
+        margin: 0 auto;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        padding: 4px 6px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--ink-forest);
+        text-align: left;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: var(--green-primary);
+        color: var(--bg-ivory);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+      }
+
+      .brand-btn:hover .brand-icon {
+        transform: scale(1.05);
+      }
+
+      .brand-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-shrink: 0;
+      }
+
+      .header-sub {
+        margin: 0;
+        display: none;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink-muted);
+        white-space: nowrap;
+      }
+
+      .btn-download-html {
+        min-height: 44px;
+        padding: 8px 14px;
+        border-radius: 12px;
+        border: 1px solid #c9dec5;
+        background: rgba(227, 240, 225, 0.72);
+        color: var(--ink-forest);
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      }
+
+      .btn-download-html:hover:not(:disabled) {
+        background: var(--green-tint);
+        border-color: #b5d1b0;
+      }
+
+      .btn-download-html:active:not(:disabled) {
+        transform: scale(0.98);
+      }
+
+      .btn-download-html:disabled {
+        opacity: 0.65;
+        cursor: wait;
+      }
+
+      /* Offline Banner */
+      .offline-banner {
+        border-bottom: 1px solid var(--amber-border);
+        background: var(--amber-bg);
+        padding: 10px 16px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 500;
+        color: #9a3412;
+      }
+
+      .offline-banner-inner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      /* Main */
+      .main-content {
+        flex: 1;
+        padding-bottom: 64px;
+      }
+
+      /* Hero */
+      .hero {
+        max-width: 896px;
+        margin: 0 auto;
+        padding: 40px 16px 32px;
+        text-align: center;
+      }
+
+      .slogan {
+        margin: 0 0 12px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--green-primary);
+      }
+
+      .hero-title {
+        margin: 0 auto;
+        max-width: 672px;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        color: var(--ink-forest);
+      }
+
+      .hero-desc {
+        margin: 16px auto 0;
+        max-width: 576px;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--ink-muted);
+      }
+
+      /* Search Form */
+      .search-form {
+        margin-top: 32px;
+      }
+
+      .input-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 22px;
+        border: 1px solid var(--border-input);
+        background: #ffffff;
+        box-shadow: 0 8px 28px -10px rgba(31, 58, 43, 0.1);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .input-bar:focus-within {
+        border-color: var(--green-primary);
+        box-shadow: 0 0 0 3px rgba(46, 125, 79, 0.18);
+      }
+
+      .input-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 14px;
+        color: var(--green-accent);
+        pointer-events: none;
+        display: inline-flex;
+      }
+
+      .item-input {
+        width: 100%;
+        min-height: 48px;
+        border: none;
+        border-radius: 16px;
+        background: transparent;
+        padding: 10px 44px;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--ink-forest);
+      }
+
+      .item-input::placeholder {
+        color: #7b8e82;
+      }
+
+      .item-input:focus {
+        outline: none;
+      }
+
+      .item-input:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .clear-btn {
+        position: absolute;
+        right: 6px;
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: #5f786a;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.15s ease, color 0.15s ease;
+      }
+
+      .clear-btn:hover {
+        background: #f2ede0;
+        color: var(--ink-forest);
+      }
+
+      .action-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .btn-photo {
+        min-height: 48px;
+        padding: 10px 16px;
+        border-radius: 16px;
+        border: 1px solid #c9dec5;
+        background: rgba(227, 240, 225, 0.72);
+        color: var(--ink-forest);
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        transition: background-color 0.15s ease;
+      }
+
+      .btn-photo:hover:not(:disabled) {
+        background: var(--green-tint);
+      }
+
+      .btn-photo:disabled {
+        opacity: 0.6;
+      }
+
+      .btn-submit {
+        min-height: 48px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 16px;
+        background: var(--green-primary);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
+        transition: background-color 0.15s ease, transform 0.1s ease;
+      }
+
+      .btn-submit:hover:not(:disabled) {
+        background: var(--green-hover);
+      }
+
+      .btn-submit:active:not(:disabled) {
+        transform: scale(0.99);
+      }
+
+      .btn-submit:disabled {
+        background: #7ba88e;
+      }
+
+      .sub-row {
+        margin-top: 10px;
+        padding: 0 8px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        text-align: left;
+      }
+
+      .sub-feedback {
+        flex: 1;
+        min-height: 24px;
+      }
+
+      .hint-text {
+        margin: 0;
+        font-size: 12px;
+        color: var(--ink-subtle);
+      }
+
+      .error-text {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--amber-text);
+      }
+
+      .sub-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .btn-gallery-link {
+        min-height: 44px;
+        padding: 8px 10px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--green-primary);
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: rgba(95, 167, 119, 0.65);
+        text-underline-offset: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .btn-gallery-link:hover:not(:disabled) {
+        background: rgba(227, 240, 225, 0.6);
+      }
+
+      .btn-gallery-link:disabled {
+        opacity: 0.5;
+      }
+
+      .char-counter {
+        font-size: 12px;
+        color: #6d8477;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .char-counter.over {
+        color: var(--amber-text);
+        font-weight: 600;
+      }
+
+      /* Photo Preview Panel */
+      .photo-panel {
+        margin-top: 16px;
+        padding: 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border-input);
+        background: #ffffff;
+        text-align: left;
+        box-shadow: 0 2px 8px rgba(31, 58, 43, 0.04);
+      }
+
+      .photo-panel-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .photo-panel-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink-forest);
+      }
+
+      .photo-panel-sub {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: var(--ink-subtle);
+      }
+
+      .btn-add-photo {
+        min-height: 44px;
+        padding: 6px 12px;
+        border-radius: 12px;
+        border: 1px solid #c9dec5;
+        background: var(--bg-ivory);
+        color: var(--green-primary);
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+
+      .btn-add-photo:hover:not(:disabled) {
+        background: rgba(227, 240, 225, 0.6);
+      }
+
+      .photo-grid {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .photo-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 8px;
+        border-radius: 16px;
+        border: 1px solid var(--border-warm);
+        background: rgba(250, 247, 238, 0.6);
+      }
+
+      .photo-thumb-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .photo-thumb {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        border: 1px solid var(--border-warm);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .photo-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink-muted);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .btn-remove-photo {
+        min-height: 44px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: 1px solid #e5d5c3;
+        background: #ffffff;
+        color: #8c3b22;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .btn-remove-photo:hover:not(:disabled) {
+        background: #feece6;
+      }
+
+      /* Chips */
+      .chips-section {
+        margin-top: 24px;
+      }
+
+      .chips-label {
+        margin: 0 0 12px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink-subtle);
+      }
+
+      .chips-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .chip-btn {
+        min-height: 44px;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        border: 1px solid var(--border-input);
+        background: #ffffff;
+        color: #2f4b3b;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: border-color 0.15s ease, background-color 0.15s ease;
+      }
+
+      .chip-btn:hover:not(:disabled) {
+        border-color: var(--green-accent);
+        background: rgba(227, 240, 225, 0.5);
+      }
+
+      .chip-btn.active {
+        border-color: var(--green-primary);
+        background: var(--green-tint);
+        color: var(--ink-forest);
+        font-weight: 600;
+      }
+
+      /* Intro Guide Box */
+      .intro-section {
+        max-width: 896px;
+        margin: 16px auto 0;
+        padding: 0 16px;
+      }
+
+      .intro-card {
+        border-radius: 24px;
+        border: 1px solid var(--border-warm);
+        background: rgba(244, 239, 224, 0.72);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .intro-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: var(--green-tint);
+        color: var(--green-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .intro-title {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ink-forest);
+      }
+
+      .intro-desc {
+        margin: 4px 0 0;
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--ink-muted);
+      }
+
+      /* Results Section */
+      .results-section {
+        max-width: 1152px;
+        margin: 8px auto 0;
+        padding: 0 16px;
+      }
+
+      .results-divider {
+        border-top: 1px solid var(--border-warm);
+        padding-top: 32px;
+      }
+
+      /* Unclear Image Alert */
+      .unclear-card {
+        max-width: 512px;
+        margin: 0 auto;
+        border-radius: 22px;
+        border: 1px solid var(--amber-border);
+        background: #ffffff;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: 0 6px 24px -12px rgba(31, 58, 43, 0.1);
+      }
+
+      .unclear-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+        border-radius: 16px;
+        background: var(--amber-bg);
+        color: #9a3412;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .unclear-title {
+        margin: 16px 0 0;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--ink-forest);
+      }
+
+      .unclear-desc {
+        margin: 6px 0 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--ink-muted);
+      }
+
+      /* Confirmation Card */
+      .confirm-card {
+        max-width: 672px;
+        margin: 0 auto;
+        border-radius: 24px;
+        border: 1px solid #c9dec5;
+        background: #ffffff;
+        padding: 24px;
+        box-shadow: 0 8px 28px -12px rgba(31, 58, 43, 0.1);
+      }
+
+      .confirm-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .confirm-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: var(--green-tint);
+        color: var(--green-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .confirm-title {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--ink-forest);
+      }
+
+      .confirm-sub {
+        margin: 4px 0 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--ink-muted);
+      }
+
+      .confirm-meta {
+        margin-top: 16px;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid var(--border-warm);
+        background: var(--bg-ivory);
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--ink-muted);
+      }
+
+      .confirm-meta p {
+        margin: 2px 0;
+      }
+
+      .confirm-candidates-label {
+        margin: 20px 0 10px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .confirm-candidates {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .candidate-btn {
+        min-height: 44px;
+        padding: 8px 16px;
+        border-radius: 16px;
+        border: 1px solid var(--green-primary);
+        background: rgba(227, 240, 225, 0.6);
+        color: var(--ink-forest);
+        font-size: 14px;
+        font-weight: 600;
+        transition: background-color 0.15s ease;
+      }
+
+      .candidate-btn:hover:not(:disabled) {
+        background: var(--green-tint);
+      }
+
+      .confirm-custom-form {
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid #eee8d6;
+      }
+
+      .confirm-custom-label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .confirm-custom-row {
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .inline-input {
+        min-height: 44px;
+        flex: 1;
+        padding: 8px 14px;
+        border-radius: 12px;
+        border: 1px solid #c9dec5;
+        background: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink-forest);
+      }
+
+      .inline-input:focus {
+        border-color: var(--green-primary);
+        outline: none;
+      }
+
+      .btn-inline-primary {
+        min-height: 44px;
+        padding: 8px 18px;
+        border: none;
+        border-radius: 12px;
+        background: var(--green-primary);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+
+      .btn-inline-primary:hover:not(:disabled) {
+        background: var(--green-hover);
+      }
+
+      .btn-inline-secondary {
+        min-height: 44px;
+        padding: 8px 14px;
+        border-radius: 12px;
+        border: 1px solid #c9dec5;
+        background: #ffffff;
+        color: var(--ink-muted);
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .btn-inline-secondary:hover:not(:disabled) {
+        background: var(--surface-soft);
+      }
+
+      /* Detected Item Banner */
+      .detected-banner {
+        margin-bottom: 24px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid #c9dec5;
+        background: rgba(227, 240, 225, 0.6);
+      }
+
+      .detected-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .detected-left {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .detected-label {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink-forest);
+      }
+
+      .detected-name {
+        color: var(--green-primary);
+      }
+
+      .btn-edit-detected {
+        min-height: 44px;
+        padding: 8px 10px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--green-primary);
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: rgba(95, 167, 119, 0.7);
+        text-underline-offset: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .btn-edit-detected:hover:not(:disabled) {
+        background: var(--green-tint);
+      }
+
+      .detected-meta {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink-muted);
+      }
+
+      .correction-form {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .correction-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Notice Banner */
+      .cause-banner {
+        margin-bottom: 20px;
+        padding: 10px 16px;
+        border-radius: 16px;
+        border: 1px solid var(--amber-border);
+        background: #fef9ec;
+        color: #8c4a13;
+        font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Results Header */
+      .results-header {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .results-title {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink-forest);
+      }
+
+      .results-sub {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: var(--ink-muted);
+      }
+
+      .generic-note {
+        margin: 8px 0 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #6b7f72;
+      }
+
+      .btn-more {
+        min-height: 44px;
+        padding: 10px 20px;
+        border-radius: 16px;
+        border: 1px solid var(--green-primary);
+        background: #ffffff;
+        color: var(--green-primary);
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        align-self: flex-start;
+        white-space: nowrap;
+        transition: background-color 0.15s ease;
+      }
+
+      .btn-more:hover:not(:disabled) {
+        background: var(--green-tint);
+      }
+
+      /* Cards Grid */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .idea-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 22px;
+        border: 1px solid #e4dec9;
+        background: #ffffff;
+        padding: 24px;
+        box-shadow: 0 6px 24px -12px rgba(31, 58, 43, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        animation: cardEnter 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .idea-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px -12px rgba(31, 58, 43, 0.14);
+      }
+
+      @keyframes cardEnter {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .card-index {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+        padding: 0 10px;
+        border-radius: 12px;
+        background: var(--green-tint);
+        color: var(--green-primary);
+        font-size: 14px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .diff-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        border: 1px solid transparent;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .diff-easy {
+        background: #e3f0e1;
+        color: #1e5631;
+        border-color: #b6d7b2;
+      }
+
+      .diff-medium {
+        background: #fef3c7;
+        color: #854d0e;
+        border-color: #fde047;
+      }
+
+      .diff-hard {
+        background: #ffedd5;
+        color: #9a3412;
+        border-color: #fdba74;
+      }
+
+      .card-title {
+        margin: 16px 0 0;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: -0.015em;
+        color: var(--ink-forest);
+      }
+
+      .card-purpose {
+        margin: 8px 0 0;
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--ink-muted);
+      }
+
+      .card-section {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid #f0ece0;
+      }
+
+      .card-section.grow {
+        flex: 1;
+      }
+
+      .card-section-label {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--ink-subtle);
+      }
+
+      .materials-list {
+        margin: 10px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .material-tag {
+        padding: 4px 10px;
+        border-radius: 8px;
+        background: var(--surface-soft);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink-forest);
+      }
+
+      .steps-list {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .step-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+        line-height: 1.65;
+        color: #294335;
+      }
+
+      .step-num {
+        margin-top: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 9999px;
+        background: var(--green-tint);
+        color: var(--green-primary);
+        font-size: 12px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .safety-box {
+        margin-top: 20px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid #f3e2b3;
+        background: #fffbeb;
+        color: #78350f;
+        font-size: 12px;
+        line-height: 1.6;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      /* Disposal Card */
+      .disposal-card {
+        max-width: 672px;
+        margin: 0 auto;
+        border-radius: 22px;
+        border: 1px solid var(--amber-border);
+        background: #ffffff;
+        padding: 24px;
+        box-shadow: 0 6px 24px -12px rgba(31, 58, 43, 0.1);
+        animation: cardEnter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .disposal-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .disposal-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: var(--amber-bg);
+        color: #9a3412;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .disposal-kicker {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 600;
+        color: #9a3412;
+      }
+
+      .disposal-title {
+        margin: 2px 0 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--ink-forest);
+      }
+
+      .disposal-reason {
+        margin: 16px 0 0;
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--ink-muted);
+      }
+
+      .disposal-step-num {
+        margin-top: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 9999px;
+        background: var(--amber-bg);
+        color: #9a3412;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      /* Skeleton */
+      .skeleton-head {
+        margin-bottom: 24px;
+      }
+
+      .skeleton-title {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--ink-forest);
+      }
+
+      .skeleton-sub {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: var(--ink-muted);
+      }
+
+      .skeleton-card {
+        border-radius: 22px;
+        border: 1px solid #e4dec9;
+        background: #ffffff;
+        padding: 24px;
+      }
+
+      .skel {
+        border-radius: 8px;
+        background: #f4efe0;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.48;
+        }
+      }
+
+      /* Runtime Recovery Fallback */
+      .fatal-card {
+        max-width: 448px;
+        margin: 64px auto;
+        padding: 32px;
+        border-radius: 24px;
+        border: 1px solid var(--border-input);
+        background: #ffffff;
+        text-align: center;
+        box-shadow: 0 10px 30px -14px rgba(31, 58, 43, 0.14);
+      }
+
+      .fatal-actions {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      /* Footer */
+      .site-footer {
+        margin-top: auto;
+        border-top: 1px solid var(--border-warm);
+        background: #f5f1e4;
+      }
+
+      .footer-inner {
+        max-width: 1152px;
+        margin: 0 auto;
+        padding: 24px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--ink-muted);
+      }
+
+      .footer-inner p {
+        margin: 0;
+      }
+
+      .footer-brand {
+        font-weight: 600;
+        color: var(--ink-forest);
+      }
+
+      .spin {
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Responsive Breakpoints */
+      @media (min-width: 640px) {
+        .header-inner {
+          padding: 16px 24px;
+          gap: 24px;
+        }
+        .brand-title {
+          font-size: 20px;
+        }
+        .header-sub {
+          display: block;
+        }
+        .hero {
+          padding: 56px 24px 40px;
+        }
+        .slogan {
+          font-size: 16px;
+        }
+        .hero-title {
+          font-size: 36px;
+        }
+        .hero-desc {
+          font-size: 17px;
+        }
+        .action-btns {
+          flex-direction: row;
+          align-items: center;
+        }
+        .photo-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .intro-section {
+          padding: 0 24px;
+        }
+        .intro-card {
+          flex-direction: row;
+          align-items: center;
+          padding: 32px;
+        }
+        .results-section {
+          padding: 0 24px;
+        }
+        .results-divider {
+          padding-top: 40px;
+        }
+        .results-header {
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: space-between;
+        }
+        .results-title {
+          font-size: 24px;
+        }
+        .confirm-card,
+        .disposal-card {
+          padding: 32px;
+        }
+        .confirm-custom-row,
+        .correction-form,
+        .fatal-actions {
+          flex-direction: row;
+          align-items: center;
+        }
+        .footer-inner {
+          flex-direction: row;
+          padding: 24px;
+          text-align: left;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .input-bar {
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+        }
+        .cards-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .header-inner,
+        .results-section,
+        .footer-inner {
+          padding-left: 32px;
+          padding-right: 32px;
+        }
+        .hero-title {
+          font-size: 42px;
+          line-height: 1.22;
+        }
+        .cards-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .idea-card,
+        .disposal-card,
+        .skel,
+        .spin {
+          animation: none !important;
+        }
+        .idea-card:hover,
+        .brand-btn:hover .brand-icon {
+          transform: none;
+        }
+      }
+    </style>
+  <script src="/_aistudio-iframe.js?v=29045eb3"></script></head>
+  <body>
+    <a href="#main-content" class="sr-only skip-link">본문으로 바로가기</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <button
+          type="button"
+          id="brand-reset-btn"
+          class="brand-btn"
+          aria-label="물건의 다음 생 처음으로 돌아가기"
+        >
+          <span class="brand-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+            </svg>
+          </span>
+          <span class="brand-title">물건의 다음 생</span>
+        </button>
+        <div class="header-right">
+          <p class="header-sub">일상 속 안전한 업사이클링 가이드</p>
+          <button
+            type="button"
+            id="download-html-btn"
+            class="btn-download-html"
+            aria-label="단독 실행 가능한 index.html 파일 다운로드"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E7D4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" x2="12" y1="15" y2="3" />
+            </svg>
+            <span id="download-html-label">index.html 다운로드</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="offline-banner" class="offline-banner hidden" role="status">
+      <span class="offline-banner-inner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 20h.01" />
+          <path d="M8.5 16.429a5 5 0 0 1 7 0" />
+          <path d="M5 12.859a10 10 0 0 1 5.17-2.69" />
+          <path d="M19 12.859a10 10 0 0 0-2.007-1.523" />
+          <path d="M2 8.82a15 15 0 0 1 4.177-2.643" />
+          <path d="M22 8.82a15 15 0 0 0-11.288-3.764" />
+          <path d="m2 2 20 20" />
+        </svg>
+        <span>현재 인터넷 연결이 끊어져 있어요. 오프라인 상태에서도 자체 추천으로 안전하게 안내해 드려요.</span>
+      </span>
+    </div>
+
+    <main id="main-content" class="main-content">
+      <section class="hero" aria-labelledby="hero-heading">
+        <p class="slogan">버리기 전에, 한 번만 다시 생각해요 🌱</p>
+        <h1 id="hero-heading" class="hero-title">
+          버려질 뻔한 물건에<br />새로운 쓰임을 선물하세요
+        </h1>
+        <p class="hero-desc">
+          주변에 있는 물건 이름을 입력하거나 사진을 올리면, 누구나 안전하게 따라 할 수 있는
+          재사용·업사이클링 아이디어 3가지를 바로 제안해 드려요.
+        </p>
+
+        <form id="search-form" class="search-form" novalidate aria-label="버리려는 물건 입력 양식">
+          <label for="upcycle-item-input" class="sr-only">버리려는 물건 이름</label>
+
+          <input
+            id="camera-file-input"
+            type="file"
+            accept="image/*"
+            capture="environment"
+            class="sr-only"
+            aria-label="카메라로 물건 사진 찍기"
+          />
+          <input
+            id="gallery-file-input"
+            type="file"
+            accept="image/*"
+            multiple
+            class="sr-only"
+            aria-label="앨범에서 물건 사진 고르기 (최대 3장)"
+          />
+
+          <div class="input-bar">
+            <div class="input-wrap">
+              <span class="search-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </span>
+              <input
+                id="upcycle-item-input"
+                type="text"
+                class="item-input"
+                placeholder="예: 다 쓴 청바지"
+                maxlength="40"
+                autocomplete="off"
+                aria-describedby="item-input-hint"
+              />
+              <button
+                type="button"
+                id="clear-input-btn"
+                class="clear-btn hidden"
+                aria-label="입력 내용 지우기"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="action-btns">
+              <button type="button" id="photo-camera-btn" class="btn-photo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E7D4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                  <circle cx="12" cy="13" r="3" />
+                </svg>
+                <span id="photo-camera-label">사진으로 찾기</span>
+              </button>
+
+              <button type="submit" id="submit-btn" class="btn-submit">
+                <span id="submit-btn-text">아이디어 생성</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sub-row">
+            <div class="sub-feedback">
+              <p id="item-input-error" role="alert" class="error-text hidden"></p>
+              <p id="item-input-hint" class="hint-text">
+                Enter 키를 누르거나 여러 각도 사진(최대 3장)으로 찾을 수 있어요.
+              </p>
+            </div>
+
+            <div class="sub-actions">
+              <button type="button" id="gallery-pick-btn" class="btn-gallery-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M16 5h6" />
+                  <path d="M19 2v6" />
+                  <path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5" />
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                  <circle cx="9" cy="9" r="2" />
+                </svg>
+                <span>앨범에서 선택</span>
+              </button>
+              <span id="char-counter" class="char-counter" aria-hidden="true">0/30</span>
+            </div>
+          </div>
+
+          <div id="photo-preview-panel" class="photo-panel hidden">
+            <div class="photo-panel-head">
+              <div>
+                <p id="photo-panel-title" class="photo-panel-title">사진 0/3장 준비됨</p>
+                <p id="photo-panel-sub" class="photo-panel-sub">
+                  여러 각도 사진을 함께 올리면 물건을 더 정확하게 정리할 수 있어요.
+                </p>
+              </div>
+              <button type="button" id="photo-add-btn" class="btn-add-photo">
+                <span>+ 사진 추가</span>
+              </button>
+            </div>
+            <div id="photo-grid" class="photo-grid"></div>
+          </div>
+        </form>
+
+        <div class="chips-section">
+          <p class="chips-label">자주 찾는 예시를 눌러 바로 확인해 보세요</p>
+          <div id="example-chips" class="chips-group" role="group" aria-label="빠른 입력 예시"></div>
+        </div>
+      </section>
+
+      <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+      <section id="intro-section" class="intro-section" aria-label="이용 안내">
+        <div class="intro-card">
+          <div class="intro-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 20h10" />
+              <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+              <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
+              <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="intro-title">어떻게 활용하나요?</h2>
+            <p class="intro-desc">
+              위 입력창에 버리려는 물건을 적거나 사진(최대 3장)을 올려보세요. 필요한
+              준비물부터 초보자도 따라 할 수 있는 제작 단계, 난이도까지 한눈에 정리해
+              드립니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="results-section" class="results-section hidden" aria-live="polite">
+        <div class="results-divider" id="results-container"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-brand">물건의 다음 생 · 버리기 전에, 한 번만 다시 생각해요</p>
+        <p>가위나 칼 등 생활 도구를 다룰 때는 안전에 유의하여 천천히 제작해 주세요.</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        // ====================================================================
+        // 1. Constants & State
+        // ====================================================================
+        var EXAMPLE_ITEMS = ["페트병", "헌 티셔츠", "유리병", "종이박스", "낡은 우산"];
+        var MAX_ITEM_LENGTH = 30;
+        var MAX_UPLOAD_IMAGES = 3;
+        var MAX_FILE_BYTES = 5 * 1024 * 1024;
+        var MAX_LONG_SIDE_PX = 1024;
+        var JPEG_QUALITY = 0.82;
+
+        var state = {
+          inputValue: "",
+          selectedImages: [],
+          activeItem: null,
+          detectedItemLabel: null,
+          recognitionMeta: null,
+          isEditingDetected: false,
+          isLoading: false,
+          isProcessingImage: false,
+          seenNames: [],
+          requestSeq: 0,
+          resultCache: new Map(),
+          lastResultView: null,
+        };
+
+        // ====================================================================
+        // 2. DOM References
+        // ====================================================================
+        var el = {
+          brandResetBtn: document.getElementById("brand-reset-btn"),
+          downloadHtmlBtn: document.getElementById("download-html-btn"),
+          downloadHtmlLabel: document.getElementById("download-html-label"),
+          offlineBanner: document.getElementById("offline-banner"),
+          mainContent: document.getElementById("main-content"),
+          searchForm: document.getElementById("search-form"),
+          itemInput: document.getElementById("upcycle-item-input"),
+          clearInputBtn: document.getElementById("clear-input-btn"),
+          cameraFileInput: document.getElementById("camera-file-input"),
+          galleryFileInput: document.getElementById("gallery-file-input"),
+          photoCameraBtn: document.getElementById("photo-camera-btn"),
+          photoCameraLabel: document.getElementById("photo-camera-label"),
+          galleryPickBtn: document.getElementById("gallery-pick-btn"),
+          submitBtn: document.getElementById("submit-btn"),
+          submitBtnText: document.getElementById("submit-btn-text"),
+          itemInputError: document.getElementById("item-input-error"),
+          itemInputHint: document.getElementById("item-input-hint"),
+          charCounter: document.getElementById("char-counter"),
+          photoPreviewPanel: document.getElementById("photo-preview-panel"),
+          photoPanelTitle: document.getElementById("photo-panel-title"),
+          photoPanelSub: document.getElementById("photo-panel-sub"),
+          photoAddBtn: document.getElementById("photo-add-btn"),
+          photoGrid: document.getElementById("photo-grid"),
+          exampleChips: document.getElementById("example-chips"),
+          liveAnnouncer: document.getElementById("live-announcer"),
+          introSection: document.getElementById("intro-section"),
+          resultsSection: document.getElementById("results-section"),
+          resultsContainer: document.getElementById("results-container"),
+        };
+
+        // ====================================================================
+        // 3. Global Runtime Safety Guard (No blank white screen)
+        // ====================================================================
+        function renderFatalFallback() {
+          if (!el.mainContent) return;
+          el.mainContent.textContent = "";
+          var card = document.createElement("div");
+          card.className = "fatal-card";
+
+          var title = document.createElement("h2");
+          title.className = "confirm-title";
+          title.textContent = "문제가 생겼어요.";
+
+          var desc = document.createElement("p");
+          desc.className = "confirm-sub";
+          desc.textContent = "문제가 생겼어요. 새로고침하거나 다시 시도해 주세요.";
+
+          var actions = document.createElement("div");
+          actions.className = "fatal-actions";
+
+          var retryBtn = document.createElement("button");
+          retryBtn.type = "button";
+          retryBtn.className = "btn-inline-primary";
+          retryBtn.textContent = "다시 시도";
+          retryBtn.addEventListener("click", function () {
+            window.location.hash = "";
+            window.location.reload();
+          });
+
+          var reloadBtn = document.createElement("button");
+          reloadBtn.type = "button";
+          reloadBtn.className = "btn-inline-secondary";
+          reloadBtn.textContent = "새로고침";
+          reloadBtn.addEventListener("click", function () {
+            window.location.reload();
+          });
+
+          actions.appendChild(retryBtn);
+          actions.appendChild(reloadBtn);
+          card.appendChild(title);
+          card.appendChild(desc);
+          card.appendChild(actions);
+          el.mainContent.appendChild(card);
+        }
+
+        window.addEventListener("error", function () {
+          renderFatalFallback();
+        });
+        window.addEventListener("unhandledrejection", function () {
+          renderFatalFallback();
+        });
+
+        // ====================================================================
+        // 4. Input Validation, Sanitization & Prompt-Injection Defense
+        // ====================================================================
+        var HAS_NEWLINE_OR_CONTROL = /[\r\n\u0000-\u001F\u007F]/;
+        var CODE_LIKE_PATTERN =
+          /(<\s*\/?\s*[a-z!][^>]*>|javascript:|data:text\/html|https?:\/\/|\b(?:SELECT|INSERT|UPDATE|DELETE|DROP|UNION|ALTER|EXEC|SCRIPT|FUNCTION|CONST|LET|VAR|IMPORT|EXPORT|RETURN|CONSOLE|WINDOW|DOCUMENT|PROCESS|EVAL)\b\s*[(={*.;]|\$\{[^}]*\}|=>|`{1,3}|\/\*|\*\/|--\s|;\s*$)/i;
+
+        var PROMPT_INJECTION_PATTERNS = [
+          /이전\s*(모든\s*)?(지시|명령|프롬프트|규칙).*?(무시|잊어|취소|버려)/i,
+          /(지시|명령|규칙|프롬프트).*?(무시해|무시하고|따르지\s*마|바꿔)/i,
+          /(시스템|개발자|내부|숨겨진)\s*(프롬프트|지시문|규칙|설정).*?(알려|보여|출력|말해|공개)/i,
+          /(프롬프트|지시문|api\s*키|비밀키).*?(알려줘|보여줘|출력해|공개해)/i,
+          /(역할|모드).*?(바꿔|변경|해제|개발자\s*모드|탈옥)/i,
+          /ignore\s+(all\s+)?(previous|prior|above|system)\s+(instructions?|prompts?|rules?)/i,
+          /(reveal|show|print|output|repeat|dump)\s+(your\s+|the\s+)?(system\s+)?(prompt|instructions?|rules?)/i,
+          /(forget|disregard|override)\s+(all\s+)?(previous|system|your)\s+(instructions?|rules?)/i,
+          /\b(jailbreak|dan\s*mode|developer\s*mode)\b/i,
+          /^you\s+are\s+now\s+/i,
+        ];
+
+        var EMOJI_AND_SYMBOL_STRIP =
+          /[\d\s\p{P}\p{S}\p{Extended_Pictographic}\uFE0E\uFE0F\u200D\u20E3\u{1F1E6}-\u{1F1FF}]/gu;
+        var ONLY_JAMO_OR_SYMBOLS =
+          /^[ㄱ-ㅎㅏ-ㅣ\d\s\p{P}\p{S}\p{Extended_Pictographic}\uFE0E\uFE0F\u200D\u20E3]+$/u;
+        var HAS_READABLE_LETTER = /[가-힣a-zA-Z]/;
+
+        function isPromptInjectionAttempt(raw) {
+          var collapsed = String(raw || "").trim().replace(/\s+/g, " ");
+          if (!collapsed) return false;
+          return PROMPT_INJECTION_PATTERNS.some(function (re) {
+            return re.test(collapsed);
+          });
+        }
+
+        function cleanItemInput(raw) {
+          var cleaned = String(raw || "").trim();
+          cleaned = cleaned.replace(/[ㄱ-ㅎㅏ-ㅣ]+/g, " ");
+          cleaned = cleaned.replace(
+            /[\p{Extended_Pictographic}\uFE0E\uFE0F\u200D\u20E3\u{1F1E6}-\u{1F1FF}]/gu,
+            " "
+          );
+          cleaned = cleaned.replace(/[^\p{L}\p{N}\s-]/gu, " ");
+          cleaned = cleaned.replace(/(^|\s)-+|-+(\s|$)/g, " ");
+          cleaned = cleaned.replace(/(.)\1{2,}/gu, "$1");
+          return cleaned.replace(/\s+/g, " ").trim();
+        }
+
+        function validateItemInput(raw) {
+          var text = String(raw || "");
+          if (HAS_NEWLINE_OR_CONTROL.test(text)) {
+            return {
+              valid: false,
+              normalized: "",
+              message: "줄바꿈 없이 물건 이름만 한 줄로 입력해 주세요. (예: 페트병, 헌 티셔츠)",
+            };
+          }
+
+          var trimmed = text.trim().replace(/\s+/g, " ");
+          if (!trimmed) {
+            return {
+              valid: false,
+              normalized: "",
+              message: "버리려는 물건을 먼저 입력해 주세요.",
+            };
+          }
+
+          if (Array.from(trimmed).length > MAX_ITEM_LENGTH) {
+            return {
+              valid: false,
+              normalized: trimmed,
+              message: "물건 이름은 " + MAX_ITEM_LENGTH + "자 이내로 입력해 주세요.",
+            };
+          }
+
+          if (CODE_LIKE_PATTERN.test(trimmed)) {
+            return {
+              valid: false,
+              normalized: "",
+              message: "코드나 특수 형식 대신 물건 이름만 간단히 입력해 주세요. (예: 유리병, 헌 티셔츠)",
+            };
+          }
+
+          var remaining = trimmed.replace(EMOJI_AND_SYMBOL_STRIP, "");
+          if (!remaining) {
+            return {
+              valid: false,
+              normalized: trimmed,
+              message:
+                "이모지, 숫자, 특수문자만으로는 물건을 알기 어려워요. 물건 이름을 입력해 주세요. (예: 페트병, 헌 티셔츠)",
+            };
+          }
+
+          if (ONLY_JAMO_OR_SYMBOLS.test(trimmed) || !HAS_READABLE_LETTER.test(trimmed)) {
+            return {
+              valid: false,
+              normalized: trimmed,
+              message: "완전한 단어 형태로 물건 이름을 입력해 주세요. (예: 유리병, 다 쓴 청바지)",
+            };
+          }
+
+          if (isPromptInjectionAttempt(trimmed)) {
+            return {
+              valid: true,
+              normalized: trimmed,
+              isPromptInjection: true,
+            };
+          }
+
+          var normalized = cleanItemInput(trimmed);
+          if (!normalized || !HAS_READABLE_LETTER.test(normalized)) {
+            return {
+              valid: false,
+              normalized: "",
+              message: "완전한 단어 형태로 물건 이름을 입력해 주세요. (예: 유리병, 다 쓴 청바지)",
+            };
+          }
+
+          return {
+            valid: true,
+            normalized: normalized,
+          };
+        }
+
+        // ====================================================================
+        // 5. Image Processing (Validation, EXIF Orientation, HEIC, Blur/Dark Check)
+        // ====================================================================
+        var ALLOWED_IMAGE_EXT = /\.(jpe?g|png|webp|gif|bmp|heic|heif)$/i;
+        var HEIC_MIME_OR_EXT = /^(image\/heic|image\/heif)$/i;
+        var HEIC_EXT = /\.(heic|heif)$/i;
+
+        function isHeicFile(file) {
+          return HEIC_MIME_OR_EXT.test(file.type) || HEIC_EXT.test(file.name);
+        }
+
+        function validateImageFile(file) {
+          var hasImageMime = file.type && file.type.indexOf("image/") === 0;
+          var hasImageExt = ALLOWED_IMAGE_EXT.test(file.name || "");
+          if (!hasImageMime && !hasImageExt) {
+            return "사진 파일만 올려 주세요.";
+          }
+          if (file.size === 0) {
+            return "손상되었거나 비어 있는 사진 파일이에요. 다른 사진을 선택해 주세요.";
+          }
+          if (file.size > MAX_FILE_BYTES) {
+            return "사진 용량이 5MB를 넘어요. 5MB 이하 사진 파일만 올려 주세요.";
+          }
+          return null;
+        }
+
+        function parseJpegExifOrientation(buffer) {
+          var view = new DataView(buffer);
+          if (view.byteLength < 12 || view.getUint16(0, false) !== 0xffd8) {
+            return 1;
+          }
+          var offset = 2;
+          while (offset + 4 < view.byteLength) {
+            var marker = view.getUint16(offset, false);
+            offset += 2;
+            if (marker === 0xffe1) {
+              if (offset + 8 > view.byteLength) return 1;
+              var length = view.getUint16(offset, false);
+              if (view.getUint32(offset + 2, false) !== 0x45786966) {
+                offset += length;
+                continue;
+              }
+              var tiffOffset = offset + 8;
+              if (tiffOffset + 8 > view.byteLength) return 1;
+              var littleEndian = view.getUint16(tiffOffset, false) === 0x4949;
+              if (!littleEndian && view.getUint16(tiffOffset, false) !== 0x4d4d) {
+                return 1;
+              }
+              var firstIfdOffset = view.getUint32(tiffOffset + 4, littleEndian);
+              var ifdStart = tiffOffset + firstIfdOffset;
+              if (ifdStart + 2 > view.byteLength) return 1;
+              var entries = view.getUint16(ifdStart, littleEndian);
+              for (var i = 0; i < entries; i++) {
+                var entryOffset = ifdStart + 2 + i * 12;
+                if (entryOffset + 12 > view.byteLength) break;
+                if (view.getUint16(entryOffset, littleEndian) === 0x0112) {
+                  var ori = view.getUint16(entryOffset + 8, littleEndian);
+                  return ori >= 1 && ori <= 8 ? ori : 1;
+                }
+              }
+              return 1;
+            } else if ((marker & 0xff00) !== 0xff00) {
+              break;
+            } else {
+              if (offset + 2 > view.byteLength) break;
+              var segLength = view.getUint16(offset, false);
+              if (segLength < 2) break;
+              offset += segLength;
+            }
+          }
+          return 1;
+        }
+
+        function applyExifCanvasTransform(ctx, orientation, targetWidth, targetHeight) {
+          switch (orientation) {
+            case 2: ctx.transform(-1, 0, 0, 1, targetWidth, 0); break;
+            case 3: ctx.transform(-1, 0, 0, -1, targetWidth, targetHeight); break;
+            case 4: ctx.transform(1, 0, 0, -1, 0, targetHeight); break;
+            case 5: ctx.transform(0, 1, 1, 0, 0, 0); break;
+            case 6: ctx.transform(0, 1, -1, 0, targetWidth, 0); break;
+            case 7: ctx.transform(0, -1, -1, 0, targetWidth, targetHeight); break;
+            case 8: ctx.transform(0, -1, 1, 0, 0, targetHeight); break;
+            default: break;
+          }
+        }
+
+        function loadImageFromBlob(blob) {
+          return new Promise(function (resolve, reject) {
+            var url = URL.createObjectURL(blob);
+            var img = new Image();
+            img.onload = function () {
+              URL.revokeObjectURL(url);
+              resolve(img);
+            };
+            img.onerror = function () {
+              URL.revokeObjectURL(url);
+              reject(new Error("손상되었거나 읽을 수 없는 사진 파일이에요. 다른 사진을 선택해 주세요."));
+            };
+            img.src = url;
+          });
+        }
+
+        function convertHeicViaCdn(file) {
+          return new Promise(function (resolve, reject) {
+            if (!navigator.onLine) {
+              reject(new Error("아이폰 HEIC 사진은 JPG 또는 PNG 파일로 변환해 올려 주세요."));
+              return;
+            }
+            function runConvert() {
+              if (typeof window.heic2any !== "function") {
+                reject(new Error("아이폰 HEIC 사진 변환에 실패했어요. JPG 또는 PNG 파일로 올려 주세요."));
+                return;
+              }
+              window
+                .heic2any({ blob: file, toType: "image/jpeg", quality: JPEG_QUALITY })
+                .then(function (out) {
+                  resolve(Array.isArray(out) ? out[0] : out);
+                })
+                .catch(function () {
+                  reject(new Error("아이폰 HEIC 사진 변환에 실패했어요. JPG 또는 PNG 파일로 올려 주세요."));
+                });
+            }
+            if (typeof window.heic2any === "function") {
+              runConvert();
+              return;
+            }
+            var s = document.createElement("script");
+            s.src = "https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";
+            s.onload = runConvert;
+            s.onerror = function () {
+              reject(new Error("아이폰 HEIC 사진 변환 도구를 불러오지 못했어요. JPG 또는 PNG로 올려 주세요."));
+            };
+            document.head.appendChild(s);
+          });
+        }
+
+        function computeImageSignature(base64Data) {
+          var hash = 2166136261;
+          var step = Math.max(1, Math.floor(base64Data.length / 512));
+          for (var i = 0; i < base64Data.length; i += step) {
+            hash ^= base64Data.charCodeAt(i);
+            hash = Math.imul(hash, 16777619);
+          }
+          return base64Data.length + ":" + (hash >>> 0).toString(16);
+        }
+
+        function assessImageQuality(ctx, width, height) {
+          var sampleW = Math.min(96, width);
+          var sampleH = Math.min(96, height);
+          var tmp = document.createElement("canvas");
+          tmp.width = sampleW;
+          tmp.height = sampleH;
+          var tctx = tmp.getContext("2d");
+          if (!tctx) return { isUnclear: false };
+          tctx.drawImage(ctx.canvas, 0, 0, sampleW, sampleH);
+          var data = tctx.getImageData(0, 0, sampleW, sampleH).data;
+
+          var totalLuma = 0;
+          var totalDiff = 0;
+          var count = sampleW * sampleH;
+          var lumas = new Float32Array(count);
+
+          for (var i = 0; i < count; i++) {
+            var idx = i * 4;
+            var luma = 0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2];
+            lumas[i] = luma;
+            totalLuma += luma;
+          }
+
+          var edgeCount = 0;
+          for (var y = 0; y < sampleH - 1; y++) {
+            for (var x = 0; x < sampleW - 1; x++) {
+              var p = y * sampleW + x;
+              totalDiff += Math.abs(lumas[p] - lumas[p + 1]) + Math.abs(lumas[p] - lumas[p + sampleW]);
+              edgeCount += 2;
+            }
+          }
+
+          var avgLuma = totalLuma / Math.max(1, count);
+          var avgEdge = totalDiff / Math.max(1, edgeCount);
+          return {
+            isUnclear: avgLuma < 20 || avgEdge < 1.2,
+          };
+        }
+
+        async function decodeToOrientedSource(blob, exifOrientation) {
+          if (typeof createImageBitmap === "function") {
+            try {
+              var bitmap = await createImageBitmap(blob, { imageOrientation: "from-image" });
+              if (bitmap.width > 0 && bitmap.height > 0) {
+                return {
+                  source: bitmap,
+                  srcWidth: bitmap.width,
+                  srcHeight: bitmap.height,
+                  needsManualExif: false,
+                  close: function () { bitmap.close(); },
+                };
+              }
+              bitmap.close();
+            } catch (_e) {
+              // fallback below
+            }
+          }
+
+          var img = await loadImageFromBlob(blob);
+          var srcWidth = img.naturalWidth || img.width;
+          var srcHeight = img.naturalHeight || img.height;
+          if (!srcWidth || !srcHeight) {
+            throw new Error("손상되었거나 읽을 수 없는 사진 파일이에요. 다른 사진을 선택해 주세요.");
+          }
+
+          var autoOrient =
+            typeof CSS !== "undefined" &&
+            typeof CSS.supports === "function" &&
+            CSS.supports("image-orientation", "from-image");
+
+          return {
+            source: img,
+            srcWidth: srcWidth,
+            srcHeight: srcHeight,
+            needsManualExif: !autoOrient && exifOrientation > 1,
+          };
+        }
+
+        async function compressImageForUpload(file) {
+          var err = validateImageFile(file);
+          if (err) throw new Error(err);
+
+          var headerBuf;
+          try {
+            headerBuf = await file.slice(0, 128 * 1024).arrayBuffer();
+          } catch (_e) {
+            throw new Error("손상되었거나 읽을 수 없는 사진 파일이에요. 다른 사진을 선택해 주세요.");
+          }
+          var exifOrientation = parseJpegExifOrientation(headerBuf);
+
+          var decoded;
+          try {
+            decoded = await decodeToOrientedSource(file, exifOrientation);
+          } catch (decodeErr) {
+            if (isHeicFile(file)) {
+              var convertedBlob = await convertHeicViaCdn(file);
+              var convertedBuf = await convertedBlob.slice(0, 128 * 1024).arrayBuffer();
+              exifOrientation = parseJpegExifOrientation(convertedBuf);
+              decoded = await decodeToOrientedSource(convertedBlob, exifOrientation);
+            } else {
+              throw decodeErr instanceof Error
+                ? decodeErr
+                : new Error("손상되었거나 읽을 수 없는 사진 파일이에요. 다른 사진을 선택해 주세요.");
+            }
+          }
+
+          try {
+            var swapAxes = decoded.needsManualExif && exifOrientation >= 5 && exifOrientation <= 8;
+            var orientedW = swapAxes ? decoded.srcHeight : decoded.srcWidth;
+            var orientedH = swapAxes ? decoded.srcWidth : decoded.srcHeight;
+
+            var longSide = Math.max(orientedW, orientedH);
+            var scale = longSide > MAX_LONG_SIDE_PX ? MAX_LONG_SIDE_PX / longSide : 1;
+            var targetW = Math.max(1, Math.round(orientedW * scale));
+            var targetH = Math.max(1, Math.round(orientedH * scale));
+
+            var canvas = document.createElement("canvas");
+            canvas.width = targetW;
+            canvas.height = targetH;
+            var ctx = canvas.getContext("2d");
+            if (!ctx) throw new Error("이미지를 처리할 수 없습니다.");
+
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0, 0, targetW, targetH);
+
+            ctx.save();
+            if (decoded.needsManualExif) {
+              applyExifCanvasTransform(ctx, exifOrientation, targetW, targetH);
+              ctx.drawImage(
+                decoded.source,
+                0,
+                0,
+                swapAxes ? targetH : targetW,
+                swapAxes ? targetW : targetH
+              );
+            } else {
+              ctx.drawImage(decoded.source, 0, 0, targetW, targetH);
+            }
+            ctx.restore();
+
+            var quality = assessImageQuality(ctx, targetW, targetH);
+            var previewDataUrl = canvas.toDataURL("image/jpeg", JPEG_QUALITY);
+            var base64Data = previewDataUrl.split(",")[1] || "";
+            if (!base64Data) {
+              throw new Error("손상되었거나 읽을 수 없는 사진 파일이에요. 다른 사진을 선택해 주세요.");
+            }
+
+            return {
+              id: Date.now() + "-" + Math.random().toString(36).slice(2, 8),
+              fileName: file.name || "",
+              previewDataUrl: previewDataUrl,
+              base64Data: base64Data,
+              mimeType: "image/jpeg",
+              signature: computeImageSignature(base64Data),
+              isUnclear: quality.isUnclear,
+            };
+          } finally {
+            if (decoded && typeof decoded.close === "function") {
+              decoded.close();
+            }
+          }
+        }
+
+        // ====================================================================
+        // 6. Upcycling Idea & Disposal Engine (Offline & Static Deployment Ready)
+        // ====================================================================
+        function hasBatchim(word) {
+          var t = String(word || "").trim();
+          if (!t) return false;
+          var code = t.charCodeAt(t.length - 1);
+          if (code >= 0xac00 && code <= 0xd7a3) {
+            return (code - 0xac00) % 28 !== 0;
+          }
+          return /[013678lmnrLMNR]/.test(t[t.length - 1]);
+        }
+
+        function fixKoreanParticles(text, item) {
+          var escaped = item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          var b = hasBatchim(item);
+          return text
+            .replace(new RegExp(escaped + "(?:을\\/를|을|를)(?=\\s|[,.!?]|$)", "g"), item + (b ? "을" : "를"))
+            .replace(new RegExp(escaped + "(?:이\\/가|이|가)(?=\\s|[,.!?]|$)", "g"), item + (b ? "이" : "가"))
+            .replace(new RegExp(escaped + "(?:은\\/는|은|는)(?=\\s|[,.!?]|$)", "g"), item + (b ? "은" : "는"))
+            .replace(new RegExp(escaped + "(?:과\\/와|과|와)(?=\\s|[,.!?]|$)", "g"), item + (b ? "과" : "와"));
+        }
+
+        var NON_ITEM_WORDS = new Set([
+          "사람", "엄마", "아빠", "친구", "동료", "가족", "선생님", "학생", "아기", "어린이",
+          "강아지", "고양이", "동물", "새", "물고기", "토끼", "사랑", "행복", "슬픔", "기쁨",
+          "분노", "희망", "꿈", "시간", "내일", "어제", "오늘", "하늘", "바다", "구름", "바람",
+          "우주", "날씨", "생각", "마음", "외계인", "서울", "부산", "학교", "회사", "공원", "바보", "멍청이"
+        ]);
+
+        var ITEM_ALIASES = {
+          페트뱅: "페트병",
+          패트병: "페트병",
+          패트뱅: "페트병",
+          펫트병: "페트병",
+          petbottle: "페트병",
+          plasticbottle: "페트병",
+          waterbottle: "페트병",
+          glassbottle: "유리병",
+          tumbler: "텀블러",
+          jeans: "헌 청바지",
+          denim: "청바지",
+          tshirt: "헌 티셔츠",
+          cardboard: "종이박스",
+          paperbox: "종이박스",
+          umbrella: "낡은 우산",
+          cable: "충전기 케이블",
+          charger: "충전기",
+          plasticcup: "플라스틱 컵",
+          papercup: "종이컵",
+          청버지: "청바지",
+          티서츠: "티셔츠",
+          유리빙: "유리병",
+          중전기: "충전기",
+        };
+
+        var AMBIGUOUS_HOMONYMS = {
+          배: {
+            material: "미정(여러 뜻)",
+            candidates: ["배(과일) 껍질", "종이배·장난감 배", "선박 모형 소품"],
+            note: "'배'는 과일, 장난감/종이배 등 여러 의미가 있어 확인이 필요합니다.",
+          },
+          밤: {
+            material: "미정(여러 뜻)",
+            candidates: ["밤 껍질", "무드등·조명 소품"],
+            note: "'밤'은 먹거리(밤 껍질) 또는 조명 소품 등으로 해석될 수 있습니다.",
+          },
+          차: {
+            material: "미정(여러 뜻)",
+            candidates: ["티백·찻잎 찌꺼기", "장난감 자동차"],
+            note: "'차'는 마시는 차(티백/찻잎) 또는 자동차 장난감 등 여러 의미가 있습니다.",
+          },
+          병: {
+            material: "미정(유리/플라스틱)",
+            candidates: ["페트병", "유리병", "작은 약병"],
+            note: "'병'의 재질(플라스틱/유리)에 따라 재사용 방법이 달라집니다.",
+          },
+          컵: {
+            material: "미정(유리/플라스틱/종이)",
+            candidates: ["플라스틱 일회용 컵", "유리컵", "종이컵"],
+            note: "'컵'의 소재에 따라 제작 및 안전 수칙이 달라집니다.",
+          },
+          통: {
+            material: "미정(플라스틱/금속/종이)",
+            candidates: ["플라스틱 반찬통", "과자 깡통(금속)", "종이 원통 케이스"],
+            note: "'통'의 재질을 선택하면 더 정확한 아이디어를 드릴 수 있습니다.",
+          },
+        };
+
+        var DISPOSAL_RULES = [
+          {
+            matches: function (s) {
+              return /(깨진|금이\s*간|부서진|박살|파손된|금간)/.test(s) &&
+                /(유리|컵|잔|병|거울|그릇|접시|도자기|사기)/.test(s);
+            },
+            guide: function (item) {
+              return {
+                title: item + "은/는 재사용보다 안전한 분리배출이 중요해요",
+                reason: "깨지거나 금이 간 유리·도자기는 날카로운 파편으로 손을 크게 다칠 수 있고 재활용 선별도 어렵기 때문에 안전하게 감싸 일반 쓰레기로 배출해야 합니다.",
+                steps: [
+                  "두꺼운 고무장갑이나 목장갑을 끼고 큰 조각을 먼저 집게로 조심스럽게 집어 올립니다.",
+                  "작은 파편은 빗자루와 쓰레받기로 쓸어 담고, 젖은 키친타월로 주변 바닥을 한 번 더 닦아냅니다.",
+                  "수거하시는 분이 다치지 않도록 두꺼운 신문지나 골판지 상자에 여러 겹 감싸고 테이프로 단단히 봉합니다.",
+                  "겉면에 '깨진 유리 주의'라고 크게 적은 뒤 종량제 봉투(일반 쓰레기)에 넣어 배출합니다.",
+                ],
+              };
+            },
+          },
+          {
+            matches: function (s) {
+              return /(건전지|배터리|보조배터리|리튬|수은전지)/.test(s);
+            },
+            guide: function (item) {
+              return {
+                title: item + "은 전용 수거함 분리배출이 필요해요",
+                reason: "배터리류는 내부 화학 물질 누출이나 화재·폭발 위험이 있어 직접 분해하거나 재사용해서는 안 되며, 반드시 전용 수거함에 배출해야 합니다.",
+                steps: [
+                  "배터리 단자(금속 접촉 부위)가 다른 금속과 닿아 스파크가 튀지 않도록 절연 테이프나 투명 테이프로 감쌉니다.",
+                  "물기가 닿지 않는 서늘한 봉투에 따로 보관해 둡니다.",
+                  "아파트 단지, 주민센터, 대형마트 또는 편의점에 설치된 '폐건전지 전용 수거함'에 넣어 배출합니다.",
+                  "부풀어 오른 보조배터리는 충격을 주지 말고 주민센터나 전자제품 AS센터 안내를 받아 배출하세요.",
+                ],
+              };
+            },
+          },
+          {
+            matches: function (s) {
+              return /(약|알약|감기약|항생제|연고|안약|영양제|의약품|시럽)/.test(s) &&
+                !/(약통|약병|약상자|약봉투)/.test(s);
+            },
+            guide: function (item) {
+              return {
+                title: item + "은 폐의약품 전용 수거함으로 배출해 주세요",
+                reason: "유통기한이 지났거나 남은 의약품을 일반 쓰레기나 하수구에 버리면 토양과 수질 오염을 일으킬 수 있어 전문 회수가 필요합니다.",
+                steps: [
+                  "알약은 겉 포장지(종이 상자)만 분리해 재활용하고, 약 포장(PTP)은 그대로 두거나 약국 안내에 따라 모읍니다.",
+                  "물약이나 연고류는 내용물이 새지 않도록 마개를 꽉 잠근 상태로 지퍼백에 담습니다.",
+                  "가까운 약국, 보건소, 또는 주민센터에 마련된 '폐의약품 수거함'에 안전하게 배출합니다.",
+                ],
+              };
+            },
+          },
+          {
+            matches: function (s) {
+              return /(형광등|백열전구|led전구|전구)/.test(s);
+            },
+            guide: function (item) {
+              return {
+                title: item + "은 깨지지 않게 전용 수거함에 배출하세요",
+                reason: "형광등과 전구는 파손 시 날카로운 파편과 유해 물질(수은 등)이 노출될 수 있어 원형 그대로 배출해야 합니다.",
+                steps: [
+                  "전구 교체 직후라면 충분히 식을 때까지 10분 이상 기다린 뒤 마른 손으로 분리합니다.",
+                  "새 전구가 들어있던 종이 포장재나 신문지로 감싸 이동 중 깨지지 않게 보호합니다.",
+                  "아파트 분리수거장이나 주민센터에 있는 '폐형광등·폐전구 전용 수거함'에 조심스럽게 넣습니다.",
+                ],
+              };
+            },
+          },
+          {
+            matches: function (s) {
+              return /(부패한|상한|썩은|곰팡이|음식물|남은\s*음식|유통기한\s*지난\s*(우유|음식|빵|과자))/.test(s);
+            },
+            guide: function (item) {
+              return {
+                title: item + "은 위생을 위해 즉시 분리배출해 주세요",
+                reason: "부패하거나 변질된 식품은 세균과 곰팡이 번식 위험이 높아 공예나 수납 재료로 재사용하기 어렵습니다.",
+                steps: [
+                  "포장 용기(비닐·플라스틱·유리)와 내용물을 분리하고, 물기가 많은 음식물은 체에 밭쳐 물기를 최대한 뺍니다.",
+                  "음식물은 음식물 쓰레기 전용 봉투나 수거함에 버리고, 곰팡이가 심하거나 딱딱한 껍질·뼈류는 일반 쓰레기로 배출합니다.",
+                  "포장 용기는 깨끗이 헹군 뒤 재질에 맞게 분리배출합니다.",
+                ],
+              };
+            },
+          },
+        ];
+
+        var KEYWORD_RULES = [
+          { category: "glass", keywords: ["유리병", "유리컵", "유리잔", "유리", "와인병", "맥주병", "소주병", "잼병", "향수병", "머그컵", "사기그릇", "도자기", "화병"] },
+          { category: "paper", keywords: ["종이박스", "택배박스", "종이컵", "종이백", "쇼핑백", "박스", "상자", "종이", "신문", "잡지", "책", "노트", "공책", "포장지", "우유팩", "휴지심", "계란판", "골판지", "달력", "전단지"] },
+          { category: "wood", keywords: ["나무젓가락", "나무판", "나무", "원목", "목재", "코르크", "이쑤시개", "아이스크림막대", "대나무", "도마", "목제"] },
+          { category: "electronics_cable", keywords: ["충전기", "케이블", "이어폰", "헤드폰", "전선", "usb", "멀티탭", "어댑터", "마우스", "키보드", "리모컨"] },
+          { category: "umbrella_bag", keywords: ["우산", "양산", "비옷", "우비", "가방", "백팩", "파우치", "에코백", "지갑", "운동화", "모자", "벨트"] },
+          { category: "fabric", keywords: ["청바지", "티셔츠", "바지", "셔츠", "원피스", "치마", "양말", "수건", "타월", "이불", "담요", "커튼", "데님", "목도리", "스웨터", "니트", "패브릭", "장갑", "옷", "천"] },
+          { category: "metal", keywords: ["알루미늄캔", "맥주캔", "음료캔", "통조림", "깡통", "철사", "옷걸이", "클립", "스텐", "스테인리스", "프라이팬", "냄비", "열쇠", "캔", "텀블러", "보온병", "스텐컵"] },
+          { category: "plastic", keywords: ["페트병", "플라스틱", "생수병", "음료병", "샴푸통", "세제통", "요거트", "도시락통", "반찬통", "빨대", "비닐", "용기", "케이스", "바구니", "뚜껑", "칫솔", "통"] },
+        ];
+
+        function classifyItemMaterial(itemName) {
+          var lower = itemName.toLowerCase().replace(/\s+/g, "");
+          for (var i = 0; i < KEYWORD_RULES.length; i++) {
+            var rule = KEYWORD_RULES[i];
+            for (var j = 0; j < rule.keywords.length; j++) {
+              if (lower.indexOf(rule.keywords[j].toLowerCase()) !== -1) {
+                return rule.category;
+              }
+            }
+          }
+          return "other";
+        }
+
+        var TEMPLATES = {
+          plastic: [
+            {
+              name: function (i) { return i + " 저면관수 미니 화분"; },
+              purpose: function (i) { return "투명하고 가벼운 " + i + "의 위아래를 분리해 흙이 알아서 물을 빨아들이는 실내 화분을 만듭니다."; },
+              materials: function (i) { return [i, "가위", "면끈(또는 낡은 면 티셔츠 끈)", "배양토", "작은 허브·다육식물"]; },
+              steps: function (i) { return [
+                i + "의 라벨을 떼고 물로 헹군 뒤, 몸통 위에서 1/3 지점에 유성펜으로 가로선을 긋습니다.",
+                "유성펜 선을 따라 가위로 조심스럽게 반으로 자른 뒤, 절단면에 마스킹 테이프를 1바퀴 둘러 손 베임을 방지합니다.",
+                "뚜껑을 빼낸 위쪽 병 입구에 면끈을 15cm 길이로 끼우고, 끈 끝이 아래쪽 물에 닿도록 위쪽 부분을 거꾸로 얹습니다.",
+                "아래쪽 용기에 물을 절반 채우고, 위쪽 용기에 배양토와 작은 식물을 심어 밝은 창가에 둡니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "단단한 플라스틱을 자를 때는 미끄러지지 않게 조심하고, 어린이는 어른과 함께 작업하세요.",
+            },
+            {
+              name: function (i) { return i + " 책상용 필기구·브러시 정리함"; },
+              purpose: function (i) { return "원통형 " + i + "의 높이를 맞춰 잘라 책상 위 펜과 가위, 화장 브러시를 한눈에 보이게 세워 보관합니다."; },
+              materials: function (i) { return [i, "가위", "마스킹 테이프", "네임펜"]; },
+              steps: function (i) { return [
+                i + "을 세제로 씻어 물기를 완전히 말린 뒤, 바닥에서 약 11cm 높이에 네임펜으로 자를 선을 그립니다.",
+                "표시한 선을 따라 가위로 가장자리를 일정하게 잘라냅니다.",
+                "잘린 윗부분 테두리가 날카롭지 않도록 마스킹 테이프를 반으로 접어 빙 둘러 감쌉니다.",
+                "펜, 자, 가위 등을 꽂아 책상 한쪽에 두고 사용합니다."
+              ]; },
+              difficulty: "쉬움",
+              safetyNote: "절단면 테두리는 반드시 마스킹 테이프로 감싸 손을 보호하세요.",
+            },
+            {
+              name: function (i) { return i + " 잡곡·세탁세제 보관통"; },
+              purpose: function (i) { return "뚜껑이 있는 " + i + "의 밀폐 구조와 입구를 그대로 살려 쌀, 콩, 가루 세제를 흘리지 않고 덜어 씁니다."; },
+              materials: function (i) { return [i, "종이 1장(깔때기용)", "라벨 스티커", "네임펜"]; },
+              steps: function (i) { return [
+                i + " 내부를 깨끗하게 헹군 뒤 통풍이 잘되는 곳에서 24시간 이상 속까지 바짝 말립니다.",
+                "A4 종이를 고깔 모양으로 말아 테이프로 고정해 간이 깔때기를 만듭니다.",
+                "종이 깔때기를 입구에 꽂고 잡곡이나 가루 세제를 천천히 채운 뒤 뚜껑을 꽉 닫습니다.",
+                "겉면에 내용물 이름과 채운 날짜를 적은 라벨 스티커를 붙여 보관합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 싱크대 수세미 물빠짐 받침"; },
+              purpose: function (i) { return "물기에 젖지 않는 " + i + " 바닥에 물빠짐 통로를 만들어 주방 수세미를 위생적으로 말립니다."; },
+              materials: function (i) { return [i, "가위", "송곳(또는 두꺼운 압정)", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                i + " 바닥에서 약 5cm 높이로 잘라내어 수세미가 쏙 들어가는 낮은 그릇 모양을 만듭니다.",
+                "잘린 윗부분 테두리에 마스킹 테이프를 감아 부드럽게 마감합니다.",
+                "어른의 도움을 받아 송곳으로 바닥면에 작은 배수 구멍 4개를 조심스럽게 뚫습니다.",
+                "싱크대 모서리에 올려두고 젖은 수세미를 세워 물기를 뺍니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "바닥 구멍을 뚫을 때 손을 찌르지 않도록 어른이 단단한 지우개나 나무판 위에서 작업해 주세요.",
+            },
+            {
+              name: function (i) { return i + " 콘센트 옆 휴대폰 충전 거치대"; },
+              purpose: function (i) { return i + "의 넓은 몸체에 어댑터 구멍을 내어 콘센트에 걸고 바닥에 끌리지 않게 휴대폰을 거치합니다."; },
+              materials: function (i) { return [i, "가위", "유성펜", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                i + "을 씻어 말린 뒤, 앞면은 스마트폰이 들어가도록 바닥에서 10cm 높이로 자릅니다.",
+                "뒷면은 콘센트에 걸 수 있게 6cm 더 길게 남기고, 중앙 상단에 어댑터 플러그 크기만큼 사각형 구멍을 펜으로 그립니다.",
+                "표시한 구멍을 가위로 오려내고 모든 절단면에 마스킹 테이프를 둘러 마감합니다.",
+                "뒷면 구멍에 충전기 어댑터를 끼워 벽 콘센트에 꽂은 뒤 휴대폰을 거치합니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "충전기가 젖지 않도록 반드시 물기를 완전히 말린 상태에서 사용하세요.",
+            },
+            {
+              name: function (i) { return i + " 비닐봉투 뽑아쓰는 디스펜서"; },
+              purpose: function (i) { return "속이 비어 있는 " + i + " 안에 장바구니 비닐봉투를 차곡차곡 넣어 한 장씩 뽑아 쓰는 보관함을 만듭니다."; },
+              materials: function (i) { return [i, "가위", "양면테이프 또는 끈", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                i + "의 바닥 부분을 가위로 둥글게 잘라내어 비닐을 넣을 입구를 만들고 테두리를 테이프로 마감합니다.",
+                "비닐봉투를 길게 펼쳐 손잡이 부분에 다음 비닐 바닥을 끼워가며 이어 넣고 병 안으로 채웁니다.",
+                "병 입구로 첫 번째 비닐 끝이 조금 나오게 뺀 뒤, 옆면에 끈이나 양면테이프를 붙여 수납장 문 안쪽에 고정합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+          ],
+          fabric: [
+            {
+              name: function (i) { return i + " 바느질 없는 매듭 에코백"; },
+              purpose: function (i) { return "질기고 튼튼한 " + i + "을 가위로 자르고 매듭만 묶어 무거운 장바구니로 다시 사용합니다."; },
+              materials: function (i) { return [i, "천 가위(또는 잘 드는 가위)", "자", "수성펜"]; },
+              steps: function (i) { return [
+                i + "을 세탁 후 바닥에 반듯하게 펼치고, 소매나 불필요한 장식 부분을 가위로 정리합니다.",
+                "가방 입구가 될 윗부분을 양쪽 어깨끈(손잡이) 5cm 폭만 남기고 U자 모양으로 넓게 도려냅니다.",
+                "아랫단 끝을 따라 2.5cm 간격으로 깊이 7cm 정도의 세로 칼집을 내어 술 모양을 만듭니다.",
+                "앞판과 뒤판의 술을 서로 짝지어 두 번씩 단단히 매듭 묶고, 가방을 뒤집어 매듭이 안쪽으로 들어가게 정리합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 주머니 살린 벽걸이 수납 포켓"; },
+              purpose: function (i) { return i + "에 달려 있는 튼튼한 주머니와 원단을 그대로 잘라내어 리모컨·우편물 벽걸이 주머니를 만듭니다."; },
+              materials: function (i) { return [i, "가위", "나무젓가락 또는 옷걸이", "목공풀 또는 바늘과 실", "마끈"]; },
+              steps: function (i) { return [
+                i + "에서 주머니가 온전히 붙어 있는 면을 사방 3cm 여유를 두고 직사각형으로 잘라냅니다.",
+                "잘린 겉테두리가 풀리지 않도록 안쪽으로 1cm 접어 바느질하거나 패브릭 접착제로 고정합니다.",
+                "윗부분을 3cm 접어 내려 나무젓가락이나 얇은 옷걸이가 지나갈 통로를 만들어 고정합니다.",
+                "윗부분 통로에 막대를 끼우고 양 끝에 마끈을 묶어 손잡이나 벽 고리에 걸어 사용합니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 3줄 땋기 반려동물 터그 장난감"; },
+              purpose: function (i) { return "부드럽고 질긴 " + i + " 원단을 길게 잘라 3줄 땋기 하여 반려견이 물고 당기며 노는 장난감을 만듭니다."; },
+              materials: function (i) { return [i, "가위", "줄자"]; },
+              steps: function (i) { return [
+                i + "에서 단추·지퍼·라벨을 모두 제거하고 폭 4cm, 길이 50cm 정도의 긴 원단 띠를 6줄 자릅니다.",
+                "3줄씩 두 묶음으로 나눈 뒤, 6줄의 한쪽 끝을 한데 모아 손가락이 들어가지 않게 꽉 묶습니다.",
+                "두 줄씩 짝지어 3가닥으로 만든 다음, 틈이 생기지 않게 힘주어 팽팽하게 3줄 땋기를 끝까지 진행합니다.",
+                "반대쪽 끝도 풀리지 않게 두 번 묶고 끝단의 길이를 고르게 잘라 마무리합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 도톰한 컵받침·냄비받침"; },
+              purpose: function (i) { return "두께감이 있는 " + i + " 조각을 여러 겹 겹쳐 꿰매어 식탁 위 머그컵이나 작은 냄비 받침으로 씁니다."; },
+              materials: function (i) { return [i, "가위", "바늘과 실", "지름 12cm 원형 접시(본뜨기용)", "수성펜"]; },
+              steps: function (i) { return [
+                i + " 위에 원형 접시를 대고 수성펜으로 동그라미 3장을 그려 가위로 오려냅니다.",
+                "오려낸 원단 3장을 나란히 겹쳐 어긋나지 않게 손으로 꾹 눌러 정리합니다.",
+                "테두리에서 0.7cm 안쪽을 따라 굵은 실로 한 바퀴 촘촘히 홈질하여 3겹을 하나로 고정합니다.",
+                "식탁 위 머그컵이나 티포트 받침으로 배치합니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 다회용 창틀·가구 청소포"; },
+              purpose: function (i) { return "먼지를 잘 흡착하는 " + i + " 조각을 손바닥 크기로 재단해 빨아 쓰는 친환경 청소포로 활용합니다."; },
+              materials: function (i) { return [i, "가위", "보관용 작은 상자"]; },
+              steps: function (i) { return [
+                i + "을 깨끗이 빤 뒤 금속 단추, 지퍼, 딱딱한 심지 부분을 가위로 모두 도려냅니다.",
+                "손으로 쥐고 닦기 편한 약 20×20cm 정사각형으로 여러 장 반듯하게 자릅니다.",
+                "빈 상자에 차곡차곡 담아두고 창틀 틈새나 선풍기 날개 먼지를 닦을 때 사용합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 조임끈 스트링 파우치"; },
+              purpose: function (i) { return i + " 원단을 두 겹으로 꿰매고 윗단에 끈을 넣어 여행용 세면도구나 보조배터리 주머니로 씁니다."; },
+              materials: function (i) { return [i, "가위", "바늘과 실", "면끈 또는 운동화 끈", "옷핀"]; },
+              steps: function (i) { return [
+                i + "에서 튼튼한 부위를 골라 가로 20cm, 세로 26cm 크기의 직사각형 두 장을 자릅니다.",
+                "겉면끼리 마주 보게 겹친 뒤, 윗부분 3cm를 남기고 양옆과 아랫면을 1cm 간격으로 촘촘히 박음질합니다.",
+                "윗단 입구를 바깥쪽으로 2cm 접어 내려 끈이 통과할 수 있도록 한 바퀴 홈질하고, 양옆 틈을 조금 남겨둡니다.",
+                "원단을 뒤집은 뒤 옷핀에 면끈을 꽂아 입구 통로에 한 바퀴 끼우고 양 끝을 묶어 완성합니다."
+              ]; },
+              difficulty: "어려움",
+              safetyNote: "바늘을 사용할 때 손가락을 찌르지 않도록 천천히 바느질하세요.",
+            },
+          ],
+          glass: [
+            {
+              name: function (i) { return i + " 마끈 감성 테이블 화병"; },
+              purpose: function (i) { return "투명하고 물이 새지 않는 " + i + "의 목 부분에 마끈을 감아 식탁 위 작은 꽃병으로 활용합니다."; },
+              materials: function (i) { return [i, "마끈", "가위", "목공풀 또는 양면테이프", "생화 또는 유칼립투스"]; },
+              steps: function (i) { return [
+                i + "의 스티커를 따뜻한 물에 10분간 불린 뒤 수세미로 깨끗하게 떼어내고 말립니다.",
+                "입구 아래 목 부분에 양면테이프를 한 바퀴 붙이고, 그 위에 마끈을 빈틈없이 6~8바퀴 감아 매듭짓습니다.",
+                "물을 2/3 정도 채운 뒤 줄기 끝을 사선으로 자른 꽃이나 잎을 꽂아 식탁 중앙에 놓습니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 수경재배 스킨답서스 화분"; },
+              purpose: function (i) { return "빛이 통과해 뿌리 상태를 바로 볼 수 있는 " + i + "에 수경 식물을 키워 실내 공기를 쾌적하게 만듭니다."; },
+              materials: function (i) { return [i, "화분용 작은 자갈", "스킨답서스 또는 행운목 줄기", "물"]; },
+              steps: function (i) { return [
+                i + " 내부를 주방세제로 깨끗이 씻어 유분과 이물질을 완전히 제거합니다.",
+                "깨끗이 씻은 작은 자갈을 바닥에서 약 2cm 높이로 깔아 식물 줄기가 쓰러지지 않게 받쳐줍니다.",
+                "하루 정도 받아둔 수돗물을 2/3 채우고, 잎이 물에 잠기지 않게 줄기를 꽂아 밝은 실내에 둡니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 건전지형 LED 무드등 램프"; },
+              purpose: function (i) { return "빛을 은은하게 투과시키는 " + i + " 안에 안전한 건전지형 LED 와이어 전구를 넣어 무드등을 만듭니다."; },
+              materials: function (i) { return [i, "건전지형 LED 와이어 전구", "기름종이 또는 한지", "양면테이프"]; },
+              steps: function (i) { return [
+                i + "을 씻어 완전히 말린 뒤, 빛이 부드럽게 번지도록 겉면에 한지나 기름종이를 감아 양면테이프로 고정합니다.",
+                "건전지형 LED 와이어 전구의 스위치를 켜고, 전구 줄을 병 안쪽 바닥부터 동그랗게 말아 넣습니다.",
+                "작은 건전지 케이스는 병 뒷면 바닥에 보이지 않게 두고, 취침 전 은은한 보조 조명으로 사용합니다."
+              ]; },
+              difficulty: "쉬움",
+              safetyNote: "열이 발생하는 일반 전구·초 대신 반드시 발열이 없는 건전지형 LED 전구만 사용하세요.",
+            },
+            {
+              name: function (i) { return i + " 칫솔·면봉 보관 컵"; },
+              purpose: function (i) { return "습기와 물때에 강하고 무게감 있는 " + i + "을 세면대 위 칫솔이나 면봉 정리 용기로 재사용합니다."; },
+              materials: function (i) { return [i, "미끄럼 방지 실리콘 패드(또는 고무밴드)", "라벨 스티커"]; },
+              steps: function (i) { return [
+                i + " 내부와 입구 가장자리를 베이킹소다와 세제로 깨끗하게 씻어 물기를 말립니다.",
+                "세면대 위에서 미끄러져 깨지지 않도록 바닥면에 작은 실리콘 패드나 두꺼운 고무줄을 끼웁니다.",
+                "칫솔, 치약 또는 면봉·화장솜을 세워 넣고 일주일에 한 번 물기를 닦아 위생적으로 관리합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 인테리어 디퓨저 홀더"; },
+              purpose: function (i) { return "입구가 좁거나 묵직한 " + i + "에 디퓨저 스틱을 꽂아 넘어질 염려 없는 방향제로 씁니다."; },
+              materials: function (i) { return [i, "디퓨저 리드 스틱 4~5개", "디퓨저 베이스와 아로마 오일", "리본"]; },
+              steps: function (i) { return [
+                i + " 내부의 기존 냄새가 남지 않도록 소독용 에탄올로 헹군 뒤 완전히 건조합니다.",
+                "디퓨저 용액을 병의 1/2 높이까지만 채워 스틱을 꽂았을 때 넘치지 않게 합니다.",
+                "목 부분에 작은 리본을 묶어 장식하고 리드 스틱 4개를 꽂아 현관이나 책장 위에 둡니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 열탕 소독 견과류 밀폐병"; },
+              purpose: function (i) { return "냄새 배임이 없고 세척이 쉬운 " + i + "을 소독해 견과류나 마른 식재료를 보관합니다."; },
+              materials: function (i) { return [i, "큰 냄비", "집게", "마스킹 테이프", "네임펜"]; },
+              steps: function (i) { return [
+                i + "과 뚜껑을 찬물이 담긴 냄비에 넣고 중불로 천천히 끓여 3분간 열탕 소독합니다.(뜨거운 물에 바로 넣으면 깨질 수 있습니다.)",
+                "어른의 도움을 받아 집게로 건져낸 뒤 물기가 완전히 날아갈 때까지 깨끗한 면포 위에서 식힙니다.",
+                "아몬드·호두 같은 견과류를 담고 뚜껑을 닫은 뒤 마스킹 테이프에 보관 날짜를 적어 둡니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "열탕 소독 시 화상을 입지 않도록 반드시 찬물부터 천천히 가열하고 어른이 집게로 꺼내세요.",
+            },
+          ],
+          paper: [
+            {
+              name: function (i) { return i + " 서랍 맞춤 칸막이 정리함"; },
+              purpose: function (i) { return "접고 자르기 쉬운 " + i + "을 서랍 깊이에 맞게 재단해 양말, 충전기 등을 구역별로 정돈합니다."; },
+              materials: function (i) { return [i, "가위", "30cm 자", "종이테이프 또는 마스킹 테이프"]; },
+              steps: function (i) { return [
+                "정리할 서랍의 내부 높이보다 2cm 낮게 기준을 정해 자와 연필로 자를 선을 긋습니다.",
+                i + "의 윗부분을 선을 따라 가위로 잘라내어 윗면이 트인 오픈형 상자로 만듭니다.",
+                "잘라낸 자투리 판을 서랍 너비에 맞게 세로 띠로 2장 더 자른 뒤 가운데에 십자(+) 홈을 파서 끼워 칸막이를 세웁니다.",
+                "칸막이 교차 부위와 바닥 모서리를 종이테이프로 고정한 뒤 서랍 안에 넣어 물건을 분류합니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 멀티탭·전선 먼지 차단 정리함"; },
+              purpose: function (i) { return "뚜껑이 있는 " + i + " 양옆에 전선 통과 홈을 뚫어 책상 아래 어지러운 멀티탭과 선을 깔끔하게 가립니다."; },
+              materials: function (i) { return [i, "가위", "연필", "마스킹 테이프 또는 시트지"]; },
+              steps: function (i) { return [
+                i + " 안에 멀티탭이 여유 있게 들어가는지 먼저 넣어 크기를 확인합니다.",
+                "상자 양쪽 끝면 하단에 전선이 지날 가로 3cm, 세로 3cm 크기의 U자 홈을 연필로 그립니다.",
+                "그린 홈을 가위로 오려내고, 단면을 마스킹 테이프로 감싸 전선 피복이 쓸리지 않게 마감합니다.",
+                "멀티탭을 상자 안에 넣고 충전선들을 양쪽 홈으로 뺀 뒤 뚜껑을 닫아 책상 구석에 둡니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "열이 많이 나는 고전력 전열기구용 멀티탭은 상자 안에 밀폐하지 마세요.",
+            },
+            {
+              name: function (i) { return i + " 세워 쓰는 파일·잡지 꽂이"; },
+              purpose: function (i) { return "직사각형 모양의 " + i + "을 사선으로 오려 책상 위 서류, 공책, 잡지가 쓰러지지 않게 세워둡니다."; },
+              materials: function (i) { return [i, "가위", "자", "연필", "라벨 스티커"]; },
+              steps: function (i) { return [
+                i + "을 세로로 세웠을 때 앞면은 높이 12cm, 뒷면은 높이 28cm가 되도록 양쪽 옆면에 사선을 긋습니다.",
+                "선을 따라 가위로 윗부분과 앞면 일부를 사선 모양으로 잘라냅니다.",
+                "바닥이 벌어지지 않게 종이테이프로 밑면을 한 번 더 감고, 앞면에 '공책/서류' 라벨을 붙여 책장에 놓습니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 책상 옆 미니 분리수거 휴지통"; },
+              purpose: function (i) { return "형태가 잡힌 " + i + " 입구를 안으로 접어 보강하고 비닐을 씌워 책상 옆 간이 휴지통으로 씁니다."; },
+              materials: function (i) { return [i, "가위", "문구용 집게 2개", "종이테이프"]; },
+              steps: function (i) { return [
+                i + "의 상단 날개 4개를 모두 상자 안쪽 벽면으로 접어 넣어 입구 테두리를 두껍게 만듭니다.",
+                "안쪽으로 접은 날개가 뜨지 않게 모서리 안쪽을 종이테이프로 고정합니다.",
+                "내부에 작은 비닐봉투를 씌우고 양옆 모서리에 집게를 꽂아 봉투가 미끄러지지 않게 고정합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 감성 크라프트 선물 포장 상자"; },
+              purpose: function (i) { return "튼튼한 " + i + "의 송장 스티커를 제거하고 종이 완충재와 마끈을 더해 재사용 선물 상자로 꾸밉니다."; },
+              materials: function (i) { return [i, "가위", "남은 포장지 또는 신문지", "양면테이프", "마끈"]; },
+              steps: function (i) { return [
+                i + "에 붙은 택배 송장 스티커와 테이프를 천천히 떼어내 표면을 정리합니다.",
+                "겉면에 남은 포장지나 신문지를 크기에 맞춰 둘러 양면테이프로 깔끔히 붙입니다.",
+                "안쪽에 자투리 종이를 가늘게 잘라 구겨 넣어 완충재를 채우고 선물을 담은 뒤 마끈으로 리본을 묶습니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 각도 조절 종이 독서대"; },
+              purpose: function (i) { return "두꺼운 " + i + "의 넓은 판을 직각삼각형으로 접어 얇은 책이나 태블릿을 기대어 보는 받침을 만듭니다."; },
+              materials: function (i) { return [i, "가위", "30cm 자", "단단한 박스테이프"]; },
+              steps: function (i) { return [
+                i + "에서 가장 두껍고 빳빳한 면을 가로 26cm, 세로 38cm 직사각형으로 잘라냅니다.",
+                "세로 방향으로 아래에서 4cm(받침 턱), 다음 16cm(책 기대는 면), 10cm(뒷지지대), 8cm(바닥면) 위치에 접는 선을 냅니다.",
+                "삼각형 기둥 모양이 되도록 접어 뒷지지대와 바닥면 끝이 맞닿는 부분을 박스테이프로 단단히 3겹 붙입니다.",
+                "맨 아래 4cm 받침 턱을 90도로 접어 올려 책이 미끄러지지 않게 고정하고 책상 위에서 사용합니다."
+              ]; },
+              difficulty: "어려움",
+            },
+          ],
+          metal: [
+            {
+              name: function (i) { return i + " 마끈 감싼 빈티지 펜꽂이"; },
+              purpose: function (i) { return "넘어지지 않고 묵직한 " + i + " 입구 테두리를 안전하게 감싸 책상 위 펜과 붓 보관함으로 씁니다."; },
+              materials: function (i) { return [i, "두꺼운 마스킹 테이프", "마끈", "목공풀 또는 양면테이프", "가위"]; },
+              steps: function (i) { return [
+                i + " 내부를 주방세제로 깨끗이 씻어 완전히 말립니다.",
+                "입구 절단면에 손이 베이지 않도록 두꺼운 마스킹 테이프를 테두리에 3바퀴 겹쳐 감싸 안으로 접어 넣습니다.",
+                "겉면 전체에 양면테이프를 세로로 붙인 뒤 아래에서 위로 마끈을 빈틈없이 돌돌 감아 마무리합니다."
+              ]; },
+              difficulty: "쉬움",
+              safetyNote: "금속 캔이나 통조림 입구는 날카로우니 반드시 테이프를 여러 겹 감싸 안전을 확보하세요.",
+            },
+            {
+              name: function (i) { return i + " 조리도구·수저 정리통"; },
+              purpose: function (i) { return "열과 습기에 강한 " + i + " 바닥에 무게를 더해 긴 조리도구들이 쓰러지지 않게 보관합니다."; },
+              materials: function (i) { return [i, "두꺼운 테이프", "깨끗한 자갈 한 줌", "시트지 또는 천 조각"]; },
+              steps: function (i) { return [
+                i + "의 기름기를 닦아 말린 뒤, 윗부분 가장자리를 테이프로 3겹 감싸 안전하게 마감합니다.",
+                "도구를 꽂아도 통이 넘어지지 않도록 안쪽 바닥에 깨끗이 씻어 말린 자갈을 2cm 높이로 깔아줍니다.",
+                "겉면을 깔끔한 시트지로 감싼 뒤 조리대 옆에 두고 국자와 집게를 세워 둡니다."
+              ]; },
+              difficulty: "쉬움",
+              safetyNote: "입구 날카로운 부분 마감 후에도 어린이가 만지지 않게 주의하세요.",
+            },
+            {
+              name: function (i) { return i + " 자석 메모·영수증 정리 보드"; },
+              purpose: function (i) { return "자석이 잘 붙는 " + i + " 표면을 활용해 책상 위 영수증과 할 일 메모를 자석으로 붙여 관리합니다."; },
+              materials: function (i) { return [i, "자석 3~4개", "마스킹 테이프", "메모지"]; },
+              steps: function (i) { return [
+                i + "의 표면 먼지를 마른 천으로 닦고 날카로운 모서리가 있다면 마스킹 테이프로 감쌉니다.",
+                "책상 위 모니터 옆이나 벽면에 기대어 안정적으로 세워 둡니다.",
+                "중요한 고지서, 영수증, 메모지를 자석으로 겉면에 붙여 한눈에 확인합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 다육식물 미니 빈티지 화분"; },
+              purpose: function (i) { return "작고 단단한 " + i + " 바닥에 배수용 마사토를 깔아 물 관리가 적은 다육식물 화분으로 꾸밉니다."; },
+              materials: function (i) { return [i, "마스킹 테이프", "마사토(굵은 모래)", "다육식물용 배양토", "작은 다육식물"]; },
+              steps: function (i) { return [
+                i + "을 씻어 말린 뒤 입구 테두리를 마스킹 테이프로 두툼하게 감아 손이 다치지 않게 합니다.",
+                "바닥에 마사토나 작은 자갈을 3cm 높이로 넉넉히 깔아 배수층을 만듭니다.",
+                "배양토를 채우고 다육식물을 심은 뒤 2주에 한 번 소량의 물만 주며 창가에서 키웁니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " LED 티라이트 안심 랜턴"; },
+              purpose: function (i) { return i + " 안에 불 대신 안전한 건전지형 LED 티라이트를 넣어 은은한 테이블 조명으로 씁니다."; },
+              materials: function (i) { return [i, "건전지형 LED 티라이트 초", "마스킹 테이프", "노끈"]; },
+              steps: function (i) { return [
+                i + "을 깨끗이 닦고 상단 가장자리에 마스킹 테이프를 여러 번 감아 안전하게 마감합니다.",
+                "겉면 상단에 노끈을 한 바퀴 감아 단단히 묶고, 양쪽이 대칭되게 손잡이 끈을 연결합니다.",
+                "실제 촛불이 아닌 안전한 건전지형 LED 티라이트를 켜서 내부 바닥에 놓아둡니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 공구·나사·클립 분리 수납함"; },
+              purpose: function (i) { return "찌그러지거나 뚫리지 않는 " + i + "에 서랍 속에서 굴러다니는 나사, 클립을 종류별로 담습니다."; },
+              materials: function (i) { return [i, "마스킹 테이프", "네임펜"]; },
+              steps: function (i) { return [
+                i + " 내부를 마른 천으로 닦고 입구 테두리를 마스킹 테이프로 두 겹 감싸 마감합니다.",
+                "겉면에 마스킹 테이프를 붙여 '클립/압정', '여분 나사'처럼 내용물 이름을 네임펜으로 적습니다.",
+                "서랍이나 수납함 안에 세워두고 작은 부품들을 분류해 보관합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+          ],
+          wood: [
+            {
+              name: function (i) { return i + " 탁상 엽서·사진 스탠드"; },
+              purpose: function (i) { return "가볍고 따뜻한 질감의 " + i + "을 맞대어 붙여 좋아하는 엽서나 메모를 세워두는 거치대를 만듭니다."; },
+              materials: function (i) { return [i, "목공풀", "고무줄 2개", "사포", "엽서"]; },
+              steps: function (i) { return [
+                i + "에 거친 나무 가시가 있다면 사포로 2~3번 가볍게 문질러 매끄럽게 다듬습니다.",
+                "평평한 바닥 위에 2개를 나란히 놓되, 가운데에 엽서 두께(약 2mm)만큼 틈을 남기고 양쪽 끝 밑에 받침 조각을 목공풀로 붙입니다.",
+                "목공풀이 마르는 2시간 동안 고무줄로 양 끝을 묶어 움직이지 않게 고정합니다.",
+                "풀이 투명하게 마른 뒤 고무줄을 풀고 가운데 틈에 엽서나 명함을 꽂아 책상 위에 놓습니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 화분 식물 줄기 지지대·이름표"; },
+              purpose: function (i) { return "흙 속에 꽂아도 자연스러운 " + i + "을 활용해 기울어진 식물 줄기를 받치고 물 주는 날짜를 적어둡니다."; },
+              materials: function (i) { return [i, "마스킹 테이프", "네임펜", "면실 또는 부드러운 노끈"]; },
+              steps: function (i) { return [
+                i + "을 물로 닦아 바짝 말린 뒤, 윗부분 3cm 지점에 마스킹 테이프를 깃발처럼 접어 붙입니다.",
+                "테이프 위에 식물 이름과 물 주는 요일을 네임펜으로 또박또박 적습니다.",
+                "줄기가 약한 식물 옆 흙에 꽂고 줄기와 " + i + "을 면실로 느슨하게 8자 매듭으로 묶어 지지해 줍니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 내추럴 우드 컵받침"; },
+              purpose: function (i) { return i + " 여러 개를 나란히 이어 붙여 물기를 흡수하고 식탁에 따뜻함을 더하는 티코스터를 만듭니다."; },
+              materials: function (i) { return [i, "목공풀", "가위", "마끈", "무거운 책 1권"]; },
+              steps: function (i) { return [
+                i + "을 약 10cm 길이로 나란히 7~8개 정렬해 컵 바닥보다 넓은 정사각형 크기를 잡습니다.",
+                "각 조각의 옆면에 목공풀을 얇게 펴 바르고 틈 없이 밀착시켜 판 모양으로 붙입니다.",
+                "접착제가 마르는 동안 평평하게 눌리도록 위에 종이를 한 장 깔고 무거운 책을 3시간 정도 올려둡니다.",
+                "완전히 건조되면 양쪽 끝을 마끈으로 감아 매듭지어 장식한 뒤 컵받침으로 씁니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 벽면 폴라로이드 사진 걸이"; },
+              purpose: function (i) { return "가벼운 " + i + "에 마끈과 미니 집게를 달아 벽면을 꾸미는 감성 사진 행어를 만듭니다."; },
+              materials: function (i) { return [i, "마끈", "미니 나무집게 4개", "접착식 벽고리", "사진"]; },
+              steps: function (i) { return [
+                i + " 양쪽 끝에서 2cm 안쪽 지점에 마끈을 두 번 묶어 위쪽 삼각형 벽걸이 고리를 만듭니다.",
+                "아래쪽으로도 마끈 2줄을 30cm 길이로 늘어뜨려 묶어줍니다.",
+                "늘어뜨린 마끈에 미니 집게로 인화한 사진이나 엽서를 집고 벽고리에 걸어 장식합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 신발장·옷장 아로마 방향제"; },
+              purpose: function (i) { return "향기를 오래 머금는 " + i + " 표면에 아로마 오일을 떨어뜨려 신발장이나 옷장 탈취제로 씁니다."; },
+              materials: function (i) { return [i, "아로마 에센셜 오일", "작은 망사 주머니 또는 종이봉투"]; },
+              steps: function (i) { return [
+                i + " 표면의 이물질이나 먼지를 깨끗이 닦고 햇볕에 바짝 말립니다.",
+                "나무 표면에 에센셜 오일을 5~6방울 골고루 떨어뜨려 속까지 스며들게 10분간 둡니다.",
+                "망사 주머니에 넣거나 마끈으로 묶어 신발장 선반이나 옷장 봉에 걸어둡니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 좁은 틈새 먼지 청소 막대"; },
+              purpose: function (i) { return "가늘고 단단한 " + i + " 끝에 낡은 면천을 감아 창틀 레일이나 가구 틈새 먼지를 닦는 전용 도구로 씁니다."; },
+              materials: function (i) { return [i, "낡은 면천(또는 물티슈)", "고무줄 1개"]; },
+              steps: function (i) { return [
+                i + "의 끝부분을 가로 10cm 크기의 낡은 면천이나 마른 물티슈로 감쌉니다.",
+                "천이 벗겨지지 않도록 목 부분을 고무줄로 여러 번 돌돌 감아 고정합니다.",
+                "손가락이 닿지 않는 창문 레일, 키보드 사이 틈새를 쓱 밀어 먼지를 닦아낸 뒤 천만 떼어 세탁합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+          ],
+          electronics_cable: [
+            {
+              name: function (i) { return i + " 코일 모양 원형 컵받침"; },
+              purpose: function (i) { return "유연하고 내구성이 좋은 " + i + "을 뱅글뱅글 말아 붙여 물기와 열에 강한 독특한 컵받침을 만듭니다."; },
+              materials: function (i) { return [i, "글루건 또는 순간접착제", "마끈", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                "안전을 위해 " + i + "을 전원에서 완전히 분리한 뒤 물티슈로 겉면 먼지를 닦아 말립니다.",
+                "양쪽 끝 단자(금속 플러그 부분)가 걸리적거리지 않도록 마스킹 테이프로 감쌉니다.",
+                "가운데 지점부터 달팽이 껍질처럼 둥글게 말아가며 이음새를 접착제나 마끈으로 지름 9cm 크기가 되게 고정합니다.",
+                "단자 끝부분은 아래쪽으로 접어 테이프로 마무리한 뒤 머그컵 받침으로 사용합니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "절대 전선을 가위로 자르거나 콘센트에 꽂지 마세요. 피복이 벗겨진 케이블은 폐가전 수거함에 배출하세요.",
+            },
+            {
+              name: function (i) { return i + " 다용도 돗자리·우산 묶음 끈"; },
+              purpose: function (i) { return "끊어지지 않고 질긴 " + i + "을 그대로 활용해 부피 큰 피크닉 돗자리나 담요를 돌돌 말아 묶는 끈으로 씁니다."; },
+              materials: function (i) { return [i, "마스킹 테이프", "벨크로 타이 또는 고무줄"]; },
+              steps: function (i) { return [
+                i + "의 양 끝 금속 단자에 흠집이나 녹이 묻지 않도록 마스킹 테이프로 꼼꼼히 감쌉니다.",
+                "돌돌 말아둔 피크닉 돗자리나 요가 매트 둘레를 두 바퀴 감아 리본 매듭으로 묶습니다.",
+                "남은 끝부분이 풀리지 않도록 벨크로 타이로 한 번 더 고정해 보관합니다."
+              ]; },
+              difficulty: "쉬움",
+              safetyNote: "케이블을 자르지 않고 온전한 상태로만 묶음 끈으로 사용하세요.",
+            },
+            {
+              name: function (i) { return i + " 가방·모자 정리용 고리 끈"; },
+              purpose: function (i) { return "무게를 잘 버티는 " + i + "에 S자 고리를 연결해 옷장 봉에 에코백이나 모자를 세로로 걸어 수납합니다."; },
+              materials: function (i) { return [i, "S자 고리 2~3개", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                i + "을 닦은 뒤 양쪽 단자를 마스킹 테이프로 감싸 가방 원단에 긁히지 않게 합니다.",
+                "옷장 가로봉에 케이블을 두 번 둘러 단단히 매듭지어 아래로 길게 늘어뜨립니다.",
+                "늘어뜨린 줄 중간중간에 고리 매듭을 2개 만들고 S자 고리를 걸어 가방과 모자를 세로로 정리합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 미니 화분 매달기 스트랩"; },
+              purpose: function (i) { return "물기에 강하고 튼튼한 " + i + " 피복의 장점을 살려 가벼운 플라스틱 화분을 걸어두는 행잉 끈을 만듭니다."; },
+              materials: function (i) { return [i, "작은 플라스틱 화분", "마스킹 테이프", "고리"]; },
+              steps: function (i) { return [
+                i + "을 반으로 접어 가운데 고리가 생기게 한 뒤, 양 끝 단자는 테이프로 감싸 정리합니다.",
+                "가운데 고리를 기준으로 아래쪽 두 줄이 작은 화분 둘레를 감싸 받칠 수 있게 매듭을 묶습니다.",
+                "가벼운 플라스틱 화분을 안쪽에 넣고 윗고리를 걸이에 걸어 햇빛을 받게 합니다."
+              ]; },
+              difficulty: "보통",
+              safetyNote: "무거운 도자기 화분 대신 가벼운 플라스틱 화분만 걸어 떨어질 위험을 막으세요.",
+            },
+            {
+              name: function (i) { return i + " 감성 벽걸이 리스 장식"; },
+              purpose: function (i) { return "둥글게 모양이 잡히는 " + i + "을 3~4겹 원형으로 엮고 마끈과 조화를 달아 문 고리 리스 장식을 만듭니다."; },
+              materials: function (i) { return [i, "마끈", "작은 조화 또는 말린 유칼립투스", "가위", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                i + "을 지름 18cm 정도의 원형으로 3바퀴 둥글게 감아 형태를 잡습니다.",
+                "원형이 풀리지 않도록 사방을 마끈으로 4군데 묶어 고정하고 단자 끝은 뒷면으로 숨겨 테이프로 감쌉니다.",
+                "한쪽 측면에 마끈으로 조화나 리본을 묶어 장식한 뒤 문 고리에 겁니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 전선 정리 밴드 재사용"; },
+              purpose: function (i) { return "고장 난 " + i + "을 바로 버리기 전에 겉면의 실리콘 타이와 고정 밴드를 분리해 다른 케이블 정리에 씁니다."; },
+              materials: function (i) { return [i, "마스킹 테이프", "네임펜"]; },
+              steps: function (i) { return [
+                i + "에 붙어 있던 실리콘 타이, 찍찍이 밴드, 보호 캡이 있다면 모두 조심스럽게 분리합니다.",
+                "분리한 밴드를 물로 닦아 말린 뒤 현재 사용 중인 정상 케이블이나 멀티탭 선을 묶는 데 재사용합니다.",
+                "분리하고 남은 고장 난 케이블 본체는 소형 폐가전 수거함에 올바르게 배출합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+          ],
+          umbrella_bag: [
+            {
+              name: function (i) { return i + " 방수 원단 장바구니 에코백"; },
+              purpose: function (i) { return "물기와 오염을 튕겨내는 " + i + "의 방수 천을 활용해 비 오는 날에도 쓸 수 있는 가방을 만듭니다."; },
+              materials: function (i) { return [i, "가위", "바늘과 두꺼운 실", "어깨끈용 리본 또는 기존 끈"]; },
+              steps: function (i) { return [
+                i + "에서 부러진 우산살이나 낡은 지퍼를 안전하게 분리하고 방수 천만 물로 씻어 그늘에 말립니다.",
+                "깨끗한 천을 가로 35cm, 세로 40cm 크기로 2장 자른 뒤, 겉면끼리 마주 보게 겹칩니다.",
+                "입구(윗부분)를 제외한 양옆과 바닥 3면을 1cm 안쪽으로 촘촘히 박음질해 튼튼하게 잇습니다.",
+                "가방을 뒤집은 뒤 입구를 2cm 접어 넣고 손잡이용 끈 양 끝을 안쪽에 단단히 꿰매어 완성합니다."
+              ]; },
+              difficulty: "어려움",
+              safetyNote: "우산살 끝부분이 날카로우니 분리할 때 손을 조심하고 금속은 고철로 안전하게 분리배출하세요.",
+            },
+            {
+              name: function (i) { return i + " 자전거 안장 방수 커버"; },
+              purpose: function (i) { return "물에 젖지 않는 " + i + " 원단 테두리에 고무줄을 끼워 비 오는 날 야외 자전거 안장이 젖지 않게 덮어줍니다."; },
+              materials: function (i) { return [i, "가위", "고무줄(40cm)", "바늘과 실", "옷핀"]; },
+              steps: function (i) { return [
+                i + "의 방수 천을 자전거 안장보다 사방 6cm씩 크게 타원형으로 오려냅니다.",
+                "가장자리를 안쪽으로 1.5cm 접어 고무줄이 지나갈 통로를 남기고 빙 둘러 홈질합니다.",
+                "바느질 끝부분 작은 틈으로 옷핀에 끼운 고무줄을 한 바퀴 통과시킨 뒤 안장 크기에 맞게 묶어 씌웁니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 분갈이·세척 방수 매트"; },
+              purpose: function (i) { return "넓게 펼쳐지는 " + i + "의 방수 면을 화분 분갈이나 신발 세척 시 바닥에 까는 보호 매트로 씁니다."; },
+              materials: function (i) { return [i, "가위", "마스킹 테이프"]; },
+              steps: function (i) { return [
+                i + "에서 뼈대나 금속 장식을 모두 떼어내고 방수 원단만 넓게 펼칩니다.",
+                "가장자리 찢어진 부위를 가위로 반듯하게 사각형으로 다듬고 마스킹 테이프로 마감합니다.",
+                "화분 흙을 갈거나 젖은 물건을 말릴 때 바닥에 깔고, 사용 후 흙만 털어내어 접어 보관합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 방수 카드·열쇠 미니 파우치"; },
+              purpose: function (i) { return "가볍고 젖지 않는 " + i + " 천을 접어 접착식 벨크로를 붙여 산책용 방수 파우치를 만듭니다."; },
+              materials: function (i) { return [i, "가위", "접착식 벨크로", "바늘과 실"]; },
+              steps: function (i) { return [
+                i + " 원단을 가로 12cm, 세로 22cm 직사각형 모양으로 깔끔하게 자릅니다.",
+                "아래쪽 7cm 부분을 위로 접어 올려 주머니를 만들고 양옆 가장자리를 꼼꼼히 바느질합니다.",
+                "위쪽 8cm 덮개를 아래로 내렸을 때 맞닿는 안쪽 면에 접착식 벨크로를 붙여 카드나 동전을 보관합니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 돗자리·우비 스트랩 파우치"; },
+              purpose: function (i) { return i + "에 붙어 있던 똑딱이 단추와 끈을 살려 피크닉 돗자리나 우비를 말아 보관하는 커버로 씁니다."; },
+              materials: function (i) { return [i, "가위", "바늘과 실"]; },
+              steps: function (i) { return [
+                i + "의 끈과 똑딱이 단추가 붙은 부위를 중심으로 돗자리 둘레보다 넉넉한 크기로 천을 자릅니다.",
+                "풀리지 않게 잘린 면을 1cm씩 안쪽으로 접어 꿰매어 깔끔하게 테두리를 마무리합니다.",
+                "돌돌 말은 돗자리나 여분 우비를 감싸고 기존 끈과 똑딱이로 고정해 가방 안에 보관합니다."
+              ]; },
+              difficulty: "보통",
+            },
+            {
+              name: function (i) { return i + " 자석 고리 부착용 외출 포켓"; },
+              purpose: function (i) { return i + "의 튼튼한 주머니나 원단을 활용해 철제 문 자석 고리에 걸어두는 외출 준비물 수납함을 만듭니다."; },
+              materials: function (i) { return [i, "자석 고리 2개", "가위", "바늘과 실"]; },
+              steps: function (i) { return [
+                i + "의 기존 주머니 부분을 떼어내거나 천을 반 접어 양옆을 꿰매어 깊은 포켓 형태를 만듭니다.",
+                "포켓 위쪽 양 모서리에 작은 고리를 실로 달아 튼튼하게 고정합니다.",
+                "철제 문 안쪽에 자석 고리 2개를 붙이고 포켓을 걸어 마스크, 구두주걱, 열쇠를 넣어둡니다."
+              ]; },
+              difficulty: "보통",
+            },
+          ],
+          other: [
+            {
+              name: function (i) { return i + " 책상 위 소품 정리 트레이"; },
+              purpose: function (i) { return "책상이나 선반에 올려두고 열쇠, 클립, 반지 등 매일 쓰는 작은 물건을 모아두는 받침으로 씁니다."; },
+              materials: function (i) { return [i, "펠트지 또는 두꺼운 색지", "양면테이프", "가위"]; },
+              steps: function (i) { return [
+                i + "을 마른 천이나 물티슈로 깨끗하게 닦아 먼지를 제거하고 바닥에 안정적으로 놓이는지 확인합니다.",
+                "흠집이 나거나 미끄러지는 것을 막기 위해 바닥과 윗면 모양에 맞게 펠트지를 잘라 양면테이프로 붙입니다.",
+                "책상 모니터 앞이나 신발장 선반 위에 두고 외출 시 자주 찾는 열쇠와 차키 전용 자리로 활용합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 감성 포장 및 보관 파우치 꾸미기"; },
+              purpose: function (i) { return i + "을 깨끗이 정리해 천이나 크라프트지로 감싼 뒤 이름표를 달아 소품 보관·선물 패키지로 씁니다."; },
+              materials: function (i) { return [i, "안 쓰는 손수건 또는 크라프트 포장지", "마끈", "네임펜", "가위"]; },
+              steps: function (i) { return [
+                i + " 표면의 오염물이나 스티커를 깨끗이 닦아내고 크기와 형태를 정돈합니다.",
+                "물건이 넉넉히 들어가는 크라프트지나 자투리 천으로 감싸고 윗부분을 마끈으로 단단히 묶습니다.",
+                "작은 종이 태그에 내용물 이름이나 따뜻한 메시지를 적어 마끈에 달아 보관용이나 선물용으로 활용합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 포인트 컬러 선반 장식 소품"; },
+              purpose: function (i) { return i + " 표면에 분위기와 어울리는 마스킹 테이프를 입혀 책장 빈 공간을 채우는 인테리어 오브제로 만듭니다."; },
+              materials: function (i) { return [i, "패턴 마스킹 테이프 2종", "가위", "마른 천"]; },
+              steps: function (i) { return [
+                i + "의 겉면을 마른 천으로 깨끗이 닦아 테이프가 잘 붙을 수 있게 준비합니다.",
+                "줄무늬나 사선 형태로 두 가지 색상의 마스킹 테이프를 겹치지 않게 붙여 산뜻한 디자인을 입힙니다.",
+                "책장이나 선반 위 빈 공간에 책과 나란히 배치해 작은 포인트 장식으로 활용합니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 책상·서랍 앞 메모 홀더"; },
+              purpose: function (i) { return "안정적인 형태의 " + i + "에 작은 나무집게를 붙여 오늘의 할 일 메모나 엽서를 꽂아두는 홀더를 만듭니다."; },
+              materials: function (i) { return [i, "미니 나무집게 1개", "양면폼테이프", "메모지"]; },
+              steps: function (i) { return [
+                i + "이 책상 위에서 넘어지지 않도록 평평한 아랫면을 찾아 자리를 잡습니다.",
+                "윗부분이나 앞면 평평한 곳에 두꺼운 양면폼테이프를 붙여 미니 나무집게를 단단히 고정합니다.",
+                "집게에 장보기 목록, 영수증, 또는 예쁜 엽서를 꽂아 책상 앞 잘 보이는 곳에 세워둡니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 서랍 속 소형 물품 구분 보관함"; },
+              purpose: function (i) { return "서랍 안에서 굴러다니는 머리끈, 클립, 영수증을 " + i + "과 함께 구역별로 묶어 정리합니다."; },
+              materials: function (i) { return [i, "고무줄 또는 라벨 스티커"]; },
+              steps: function (i) { return [
+                i + "을 깨끗이 닦아 건조한 뒤, 보관하려는 작은 생활용품들과 크기를 맞춰 봅니다.",
+                "비슷한 용도의 작은 소품들과 함께 서랍 한 칸에 배치해 물건들이 섞이지 않도록 경계를 나눕니다.",
+                "겉면이나 옆에 라벨 스티커로 보관 품목을 적어두어 필요할 때 바로 찾아 씁니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+            {
+              name: function (i) { return i + " 천 주머니 덧댄 도어스토퍼·문진"; },
+              purpose: function (i) { return "일정한 무게나 부피가 있는 " + i + "을 부드러운 천 주머니에 넣어 바람에 문이 닫히지 않게 받치는 문진으로 씁니다."; },
+              materials: function (i) { return [i, "낡은 두꺼운 양말 또는 면 주머니", "고무줄", "끈"]; },
+              steps: function (i) { return [
+                i + "의 모서리가 문이나 바닥을 긁지 않도록 낡은 양말이나 두꺼운 면 주머니 안에 넣습니다.",
+                "문 앞에서 밀리지 않게 주머니 입구를 고무줄과 끈으로 단단히 묶어 움직임을 고정합니다.",
+                "환기할 때 문 아래쪽에 받쳐 문이 쾅 닫히는 것을 막아줍니다."
+              ]; },
+              difficulty: "쉬움",
+            },
+          ],
+        };
+
+        function hashString(str) {
+          var h = 2166136261;
+          for (var i = 0; i < str.length; i++) {
+            h ^= str.charCodeAt(i);
+            h = Math.imul(h, 16777619);
+          }
+          return h >>> 0;
+        }
+
+        function resolveItemAlias(raw) {
+          var compactLower = raw.toLowerCase().replace(/\s+/g, "");
+          return ITEM_ALIASES[compactLower] || raw;
+        }
+
+        function generateLocalIdeas(itemName, excludeNames, confirmed) {
+          var rawTrimmed = String(itemName || "").trim();
+          var normalized = resolveItemAlias(rawTrimmed);
+          var excludes = Array.isArray(excludeNames) ? excludeNames : [];
+
+          for (var d = 0; d < DISPOSAL_RULES.length; d++) {
+            if (DISPOSAL_RULES[d].matches(normalized)) {
+              var g = DISPOSAL_RULES[d].guide(normalized);
+              return {
+                resultType: "disposal",
+                detectedItem: normalized,
+                disposal: {
+                  title: fixKoreanParticles(g.title, normalized),
+                  reason: fixKoreanParticles(g.reason, normalized),
+                  steps: g.steps.map(function (s) { return fixKoreanParticles(s, normalized); }),
+                },
+              };
+            }
+          }
+
+          if (isPromptInjectionAttempt(rawTrimmed) || NON_ITEM_WORDS.has(normalized.replace(/\s+/g, ""))) {
+            return {
+              resultType: "not_an_item",
+              message: "물건 이름을 입력해 주세요",
+            };
+          }
+
+          if (!confirmed && AMBIGUOUS_HOMONYMS[normalized]) {
+            var info = AMBIGUOUS_HOMONYMS[normalized];
+            return {
+              resultType: "needs_confirmation",
+              detectedItem: normalized,
+              candidates: info.candidates,
+              recognition: {
+                detectedItem: normalized,
+                material: info.material,
+                estimatedSize: "확인 필요",
+                condition: "사용감",
+                evidence: info.note,
+                confidence: "낮음",
+                candidates: info.candidates,
+              },
+            };
+          }
+
+          var category = classifyItemMaterial(normalized);
+          var templates = TEMPLATES[category] || TEMPLATES.other;
+          var baseHash = hashString(normalized);
+
+          var allIdeas = templates.map(function (tpl) {
+            return {
+              name: tpl.name(normalized),
+              purpose: fixKoreanParticles(tpl.purpose(normalized), normalized),
+              materials: tpl.materials(normalized),
+              steps: tpl.steps(normalized).map(function (s) { return fixKoreanParticles(s, normalized); }),
+              difficulty: tpl.difficulty,
+              safetyNote: tpl.safetyNote,
+            };
+          });
+
+          var offset = baseHash % allIdeas.length;
+          var rotated = [];
+          for (var i = 0; i < allIdeas.length; i++) {
+            rotated.push(allIdeas[(offset + i) % allIdeas.length]);
+          }
+
+          var excludedSet = new Set(excludes.map(function (n) { return String(n || "").trim(); }));
+          var unseen = rotated.filter(function (idea) { return !excludedSet.has(idea.name); });
+
+          var selected;
+          if (unseen.length >= 3) {
+            selected = unseen.slice(0, 3);
+          } else {
+            var seed = Math.floor(excludedSet.size / 3) + 1;
+            var reshuffled = allIdeas.slice().sort(function (a, b) {
+              return hashString(a.name + "-" + seed) - hashString(b.name + "-" + seed);
+            });
+            selected = unseen.slice();
+            for (var k = 0; k < reshuffled.length && selected.length < 3; k++) {
+              var cand = reshuffled[k];
+              if (!selected.some(function (picked) { return picked.name === cand.name; })) {
+                selected.push(cand);
+              }
+            }
+          }
+
+          return {
+            resultType: "ideas",
+            detectedItem: normalized,
+            ideas: selected.slice(0, 3),
+            isGenericFallback: category === "other",
+          };
+        }
+
+        function inferCandidateFromFilenames(images) {
+          var combined = images.map(function (i) { return (i.fileName || "").toLowerCase(); }).join(" ");
+          var hints = [
+            { pattern: /pet|bottle|페트|생수|물병/, item: "페트병" },
+            { pattern: /jean|denim|청바지/, item: "헌 청바지" },
+            { pattern: /shirt|tee|티셔츠|옷/, item: "헌 티셔츠" },
+            { pattern: /glass|유리/, item: "유리병" },
+            { pattern: /box|cardboard|박스|상자/, item: "종이박스" },
+            { pattern: /cable|charger|usb|케이블|충전/, item: "충전기 케이블" },
+            { pattern: /umbrella|우산/, item: "낡은 우산" },
+            { pattern: /can|캔|깡통/, item: "알루미늄 캔" },
+            { pattern: /tumbler|텀블러/, item: "텀블러" },
+          ];
+          var matched = [];
+          for (var i = 0; i < hints.length; i++) {
+            if (hints[i].pattern.test(combined)) matched.push(hints[i].item);
+          }
+          var defaults = ["페트병", "헌 청바지", "유리병", "종이박스", "충전기 케이블", "낡은 우산"];
+          for (var j = 0; j < defaults.length && matched.length < 4; j++) {
+            if (matched.indexOf(defaults[j]) === -1) matched.push(defaults[j]);
+          }
+          return matched.slice(0, 4);
+        }
+
+        // ====================================================================
+        // 7. Rendering Helpers (100% XSS-safe DOM nodes)
+        // ====================================================================
+        function announce(msg) {
+          el.liveAnnouncer.textContent = msg;
+        }
+
+        function setValidationError(msg) {
+          if (msg) {
+            el.itemInputError.textContent = msg;
+            el.itemInputError.classList.remove("hidden");
+            el.itemInputHint.classList.add("hidden");
+            el.itemInput.setAttribute("aria-invalid", "true");
+            el.itemInput.setAttribute("aria-describedby", "item-input-error");
+          } else {
+            el.itemInputError.textContent = "";
+            el.itemInputError.classList.add("hidden");
+            el.itemInputHint.classList.remove("hidden");
+            el.itemInput.setAttribute("aria-invalid", "false");
+            el.itemInput.setAttribute("aria-describedby", "item-input-hint");
+          }
+        }
+
+        function syncOfflineBanner() {
+          if (!navigator.onLine) {
+            el.offlineBanner.classList.remove("hidden");
+          } else {
+            el.offlineBanner.classList.add("hidden");
+          }
+        }
+
+        function syncControls() {
+          var busy = state.isLoading || state.isProcessingImage;
+          var hasImages = state.selectedImages.length > 0;
+          var canAddMore = state.selectedImages.length < MAX_UPLOAD_IMAGES;
+
+          el.itemInput.disabled = busy;
+          el.photoCameraBtn.disabled = busy || !canAddMore;
+          el.galleryPickBtn.disabled = busy || !canAddMore;
+          el.photoAddBtn.disabled = busy || !canAddMore;
+          el.submitBtn.disabled = busy;
+
+          el.photoCameraLabel.textContent = hasImages
+            ? "사진으로 찾기 (" + state.selectedImages.length + "/" + MAX_UPLOAD_IMAGES + ")"
+            : "사진으로 찾기";
+
+          el.submitBtnText.textContent = state.isLoading ? "아이디어 찾는 중" : "아이디어 생성";
+
+          if (state.inputValue.length > 0 && !busy) {
+            el.clearInputBtn.classList.remove("hidden");
+          } else {
+            el.clearInputBtn.classList.add("hidden");
+          }
+
+          el.itemInput.placeholder = hasImages
+            ? "물건 이름을 적거나 바로 생성하세요"
+            : "예: 다 쓴 청바지";
+
+          var charCount = Array.from(state.inputValue.trim()).length;
+          el.charCounter.textContent = charCount + "/" + MAX_ITEM_LENGTH;
+          if (charCount > MAX_ITEM_LENGTH) {
+            el.charCounter.classList.add("over");
+          } else {
+            el.charCounter.classList.remove("over");
+          }
+
+          renderChips();
+          renderPhotoPreviews();
+        }
+
+        function renderChips() {
+          var busy = state.isLoading || state.isProcessingImage;
+          el.exampleChips.textContent = "";
+          EXAMPLE_ITEMS.forEach(function (item) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "chip-btn" + (state.activeItem === item ? " active" : "");
+            btn.disabled = busy;
+            btn.setAttribute("aria-pressed", state.activeItem === item ? "true" : "false");
+            btn.textContent = item;
+            btn.addEventListener("click", function () {
+              if (state.isLoading || state.isProcessingImage) return;
+              state.inputValue = item;
+              el.itemInput.value = item;
+              state.selectedImages = [];
+              setValidationError(null);
+              syncControls();
+              runIdeaSearch(item, [], [], "fresh", true);
+            });
+            el.exampleChips.appendChild(btn);
+          });
+        }
+
+        function renderPhotoPreviews() {
+          var count = state.selectedImages.length;
+          if (count === 0) {
+            el.photoPreviewPanel.classList.add("hidden");
+            el.photoGrid.textContent = "";
+            return;
+          }
+
+          el.photoPreviewPanel.classList.remove("hidden");
+          el.photoPanelTitle.textContent = "사진 " + count + "/" + MAX_UPLOAD_IMAGES + "장 준비됨";
+          el.photoPanelSub.textContent = state.inputValue.trim()
+            ? "입력한 물건 이름을 우선으로, 사진은 참고용으로 함께 확인해요."
+            : "여러 각도 사진을 함께 올리면 물건을 더 정확하게 정리할 수 있어요.";
+
+          if (count < MAX_UPLOAD_IMAGES) {
+            el.photoAddBtn.classList.remove("hidden");
+          } else {
+            el.photoAddBtn.classList.add("hidden");
+          }
+
+          el.photoGrid.textContent = "";
+          state.selectedImages.forEach(function (img, idx) {
+            var item = document.createElement("div");
+            item.className = "photo-item";
+
+            var left = document.createElement("div");
+            left.className = "photo-thumb-wrap";
+
+            var thumb = document.createElement("img");
+            thumb.className = "photo-thumb";
+            thumb.src = img.previewDataUrl;
+            thumb.alt = "선택한 물건 사진 " + (idx + 1);
+
+            var label = document.createElement("span");
+            label.className = "photo-label";
+            label.textContent = "사진 " + (idx + 1);
+
+            left.appendChild(thumb);
+            left.appendChild(label);
+
+            var delBtn = document.createElement("button");
+            delBtn.type = "button";
+            delBtn.className = "btn-remove-photo";
+            delBtn.disabled = state.isLoading;
+            delBtn.setAttribute("aria-label", "사진 " + (idx + 1) + " 삭제");
+            delBtn.textContent = "사진 삭제";
+            delBtn.addEventListener("click", function () {
+              if (state.isLoading) return;
+              state.selectedImages = state.selectedImages.filter(function (p) {
+                return p.id !== img.id;
+              });
+              setValidationError(null);
+              syncControls();
+            });
+
+            item.appendChild(left);
+            item.appendChild(delBtn);
+            el.photoGrid.appendChild(item);
+          });
+        }
+
+        function showResultsSection() {
+          el.introSection.classList.add("hidden");
+          el.resultsSection.classList.remove("hidden");
+        }
+
+        function hideResultsSection() {
+          el.resultsSection.classList.add("hidden");
+          el.resultsContainer.textContent = "";
+          el.introSection.classList.remove("hidden");
+        }
+
+        function scrollToResults() {
+          requestAnimationFrame(function () {
+            el.resultsSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          });
+        }
+
+        function renderSkeleton(itemName) {
+          showResultsSection();
+          el.resultsContainer.textContent = "";
+
+          var head = document.createElement("div");
+          head.className = "skeleton-head";
+          var title = document.createElement("p");
+          title.className = "skeleton-title";
+          title.textContent = "‘" + itemName + "’의 다음 생을 찾고 있어요";
+          var sub = document.createElement("p");
+          sub.className = "skeleton-sub";
+          sub.textContent = "안전하고 실용적인 재사용 아이디어 3가지를 준비하는 중입니다.";
+          head.appendChild(title);
+          head.appendChild(sub);
+
+          var grid = document.createElement("div");
+          grid.className = "cards-grid";
+          for (var i = 0; i < 3; i++) {
+            var c = document.createElement("div");
+            c.className = "skeleton-card";
+            c.setAttribute("aria-hidden", "true");
+            c.innerHTML =
+              '<div class="card-top"><div class="skel" style="width:40px;height:32px;"></div><div class="skel" style="width:92px;height:26px;border-radius:9999px;"></div></div>' +
+              '<div class="skel" style="width:72%;height:24px;margin-top:20px;"></div>' +
+              '<div class="skel" style="width:100%;height:14px;margin-top:12px;"></div>' +
+              '<div class="skel" style="width:82%;height:14px;margin-top:8px;"></div>' +
+              '<div class="skel" style="width:60px;height:12px;margin-top:24px;"></div>' +
+              '<div class="skel" style="width:100%;height:14px;margin-top:14px;"></div>' +
+              '<div class="skel" style="width:90%;height:14px;margin-top:10px;"></div>';
+            grid.appendChild(c);
+          }
+
+          el.resultsContainer.appendChild(head);
+          el.resultsContainer.appendChild(grid);
+        }
+
+        function renderUnclearImage(message) {
+          showResultsSection();
+          el.resultsContainer.textContent = "";
+
+          var card = document.createElement("div");
+          card.className = "unclear-card";
+          card.setAttribute("role", "alert");
+
+          var icon = document.createElement("div");
+          icon.className = "unclear-icon";
+          icon.setAttribute("aria-hidden", "true");
+          icon.innerHTML =
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><line x1="2" x2="22" y1="2" y2="22"/></svg>';
+
+          var title = document.createElement("p");
+          title.className = "unclear-title";
+          title.textContent = message || "더 가까이, 밝은 곳에서 찍어 주세요";
+
+          var desc = document.createElement("p");
+          desc.className = "unclear-desc";
+          desc.textContent =
+            "물건 하나가 화면 중앙에 선명하게 보이도록 다시 올리거나, 위 입력창에 이름을 직접 입력해 보세요.";
+
+          card.appendChild(icon);
+          card.appendChild(title);
+          card.appendChild(desc);
+          el.resultsContainer.appendChild(card);
+          announce(title.textContent);
+          scrollToResults();
+        }
+
+        function renderNeedsConfirmation(opts) {
+          showResultsSection();
+          el.resultsContainer.textContent = "";
+
+          var card = document.createElement("div");
+          card.className = "confirm-card";
+
+          var head = document.createElement("div");
+          head.className = "confirm-head";
+
+          var icon = document.createElement("div");
+          icon.className = "confirm-icon";
+          icon.setAttribute("aria-hidden", "true");
+          icon.innerHTML =
+            '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>';
+
+          var headText = document.createElement("div");
+          var title = document.createElement("h2");
+          title.className = "confirm-title";
+          title.id = "confirm-heading";
+          title.textContent = opts.title || "혹시 이 물건인가요?";
+
+          var sub = document.createElement("p");
+          sub.className = "confirm-sub";
+          sub.textContent =
+            opts.subtitle ||
+            "가장 알맞은 물건을 선택하거나 직접 이름을 입력하면 바로 맞춤형 아이디어를 만들어 드려요.";
+
+          headText.appendChild(title);
+          headText.appendChild(sub);
+          head.appendChild(icon);
+          head.appendChild(headText);
+          card.appendChild(head);
+
+          if (opts.recognition && opts.recognition.evidence) {
+            var meta = document.createElement("div");
+            meta.className = "confirm-meta";
+            var p1 = document.createElement("p");
+            p1.textContent = "추정 특징: " + opts.recognition.material + " · " + opts.recognition.evidence;
+            meta.appendChild(p1);
+            card.appendChild(meta);
+          }
+
+          if (opts.candidates && opts.candidates.length > 0) {
+            var clabel = document.createElement("p");
+            clabel.className = "confirm-candidates-label";
+            clabel.textContent = "후보 물건에서 고르기";
+            card.appendChild(clabel);
+
+            var list = document.createElement("div");
+            list.className = "confirm-candidates";
+            opts.candidates.forEach(function (candidate) {
+              var cbtn = document.createElement("button");
+              cbtn.type = "button";
+              cbtn.className = "candidate-btn";
+              cbtn.textContent = candidate;
+              cbtn.addEventListener("click", function () {
+                if (state.isLoading) return;
+                state.inputValue = candidate;
+                el.itemInput.value = candidate;
+                state.seenNames = [];
+                syncControls();
+                runIdeaSearch(candidate, state.selectedImages, [], "fresh", true);
+              });
+              list.appendChild(cbtn);
+            });
+            card.appendChild(list);
+          }
+
+          var form = document.createElement("form");
+          form.className = "confirm-custom-form";
+
+          var label = document.createElement("label");
+          label.className = "confirm-custom-label";
+          label.setAttribute("for", "confirm-custom-item");
+          label.textContent = "찾으시는 물건이 없다면 직접 입력해 주세요";
+
+          var row = document.createElement("div");
+          row.className = "confirm-custom-row";
+
+          var customInput = document.createElement("input");
+          customInput.id = "confirm-custom-item";
+          customInput.type = "text";
+          customInput.className = "inline-input";
+          customInput.maxLength = 40;
+          customInput.placeholder = "예: 플라스틱 생수병, 종이배";
+
+          var submitCustom = document.createElement("button");
+          submitCustom.type = "submit";
+          submitCustom.className = "btn-inline-primary";
+          submitCustom.textContent = "이 물건으로 찾기";
+
+          var customErr = document.createElement("p");
+          customErr.className = "error-text hidden";
+          customErr.style.marginTop = "8px";
+          customErr.style.fontSize = "12px";
+          customErr.setAttribute("role", "alert");
+
+          customInput.addEventListener("input", function () {
+            customErr.classList.add("hidden");
+            customErr.textContent = "";
+          });
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (state.isLoading) return;
+            var v = validateItemInput(customInput.value);
+            if (!v.valid) {
+              customErr.textContent = v.message || "물건 이름을 입력해 주세요.";
+              customErr.classList.remove("hidden");
+              customInput.focus();
+              return;
+            }
+            if (v.isPromptInjection) {
+              customErr.textContent = "물건 이름을 입력해 주세요";
+              customErr.classList.remove("hidden");
+              customInput.focus();
+              return;
+            }
+            state.inputValue = v.normalized;
+            el.itemInput.value = v.normalized;
+            state.seenNames = [];
+            syncControls();
+            runIdeaSearch(v.normalized, state.selectedImages, [], "fresh", true);
+          });
+
+          row.appendChild(customInput);
+          row.appendChild(submitCustom);
+          form.appendChild(label);
+          form.appendChild(row);
+          form.appendChild(customErr);
+          card.appendChild(form);
+
+          el.resultsContainer.appendChild(card);
+          announce("물건 확인이 필요합니다.");
+          scrollToResults();
+        }
+
+        function createRecognizedBanner(resolvedName) {
+          var banner = document.createElement("div");
+          banner.className = "detected-banner";
+
+          var topRow = document.createElement("div");
+          topRow.className = "detected-row";
+
+          var left = document.createElement("div");
+          left.className = "detected-left";
+
+          var label = document.createElement("p");
+          label.className = "detected-label";
+          label.appendChild(document.createTextNode("인식한 물건: "));
+          var spanName = document.createElement("span");
+          spanName.className = "detected-name";
+          spanName.textContent = resolvedName;
+          label.appendChild(spanName);
+
+          var editBtn = document.createElement("button");
+          editBtn.type = "button";
+          editBtn.className = "btn-edit-detected";
+          editBtn.textContent = "(아니에요? 수정하기)";
+
+          left.appendChild(label);
+          left.appendChild(editBtn);
+          topRow.appendChild(left);
+          banner.appendChild(topRow);
+
+          var corrForm = document.createElement("form");
+          corrForm.className = "correction-form hidden";
+
+          var corrInput = document.createElement("input");
+          corrInput.type = "text";
+          corrInput.className = "inline-input";
+          corrInput.maxLength = 40;
+          corrInput.value = resolvedName;
+          corrInput.placeholder = "올바른 물건 이름을 입력해 주세요";
+          corrInput.setAttribute("aria-label", "인식한 물건 이름 직접 수정");
+
+          var corrActions = document.createElement("div");
+          corrActions.className = "correction-actions";
+
+          var regenBtn = document.createElement("button");
+          regenBtn.type = "submit";
+          regenBtn.className = "btn-inline-primary";
+          regenBtn.textContent = "다시 생성";
+
+          var cancelBtn = document.createElement("button");
+          cancelBtn.type = "button";
+          cancelBtn.className = "btn-inline-secondary";
+          cancelBtn.textContent = "취소";
+
+          corrActions.appendChild(regenBtn);
+          corrActions.appendChild(cancelBtn);
+          corrForm.appendChild(corrInput);
+          corrForm.appendChild(corrActions);
+          banner.appendChild(corrForm);
+
+          editBtn.addEventListener("click", function () {
+            editBtn.classList.add("hidden");
+            corrForm.classList.remove("hidden");
+            corrInput.value = resolvedName;
+            corrInput.focus();
+            corrInput.select();
+          });
+
+          cancelBtn.addEventListener("click", function () {
+            corrForm.classList.add("hidden");
+            editBtn.classList.remove("hidden");
+          });
+
+          corrForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (state.isLoading) return;
+            var v = validateItemInput(corrInput.value);
+            if (!v.valid) {
+              setValidationError(v.message || "물건 이름을 입력해 주세요.");
+              return;
+            }
+            if (v.isPromptInjection) {
+              setValidationError("물건 이름을 입력해 주세요");
+              corrInput.focus();
+              return;
+            }
+            setValidationError(null);
+            state.inputValue = v.normalized;
+            el.itemInput.value = v.normalized;
+            state.seenNames = [];
+            syncControls();
+            runIdeaSearch(v.normalized, state.selectedImages, [], "fresh", true);
+          });
+
+          return banner;
+        }
+
+        function renderDisposalResult(itemName, disposal) {
+          showResultsSection();
+          el.resultsContainer.textContent = "";
+          el.resultsContainer.appendChild(createRecognizedBanner(itemName));
+
+          var card = document.createElement("article");
+          card.className = "disposal-card";
+          card.setAttribute("aria-labelledby", "disposal-heading");
+
+          var head = document.createElement("div");
+          head.className = "disposal-head";
+
+          var icon = document.createElement("div");
+          icon.className = "disposal-icon";
+          icon.setAttribute("aria-hidden", "true");
+          icon.innerHTML =
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>';
+
+          var headText = document.createElement("div");
+          var kicker = document.createElement("p");
+          kicker.className = "disposal-kicker";
+          kicker.textContent = "안전한 분리배출 안내 · " + itemName;
+
+          var title = document.createElement("h2");
+          title.id = "disposal-heading";
+          title.className = "disposal-title";
+          title.textContent = disposal.title;
+
+          headText.appendChild(kicker);
+          headText.appendChild(title);
+          head.appendChild(icon);
+          head.appendChild(headText);
+
+          var reason = document.createElement("p");
+          reason.className = "disposal-reason";
+          reason.textContent = disposal.reason;
+
+          var sec = document.createElement("div");
+          sec.className = "card-section";
+          var slabel = document.createElement("h3");
+          slabel.className = "card-section-label";
+          slabel.textContent = "안전한 배출 방법";
+
+          var ol = document.createElement("ol");
+          ol.className = "steps-list";
+          ol.setAttribute("aria-label", "분리배출 순서");
+
+          disposal.steps.forEach(function (step, idx) {
+            var li = document.createElement("li");
+            li.className = "step-item";
+            var num = document.createElement("span");
+            num.className = "disposal-step-num";
+            num.setAttribute("aria-hidden", "true");
+            num.textContent = String(idx + 1);
+            var txt = document.createElement("span");
+            txt.textContent = step;
+            li.appendChild(num);
+            li.appendChild(txt);
+            ol.appendChild(li);
+          });
+
+          sec.appendChild(slabel);
+          sec.appendChild(ol);
+          card.appendChild(head);
+          card.appendChild(reason);
+          card.appendChild(sec);
+
+          el.resultsContainer.appendChild(card);
+          announce("‘" + itemName + "’은 안전한 분리배출 안내를 확인해 주세요.");
+          scrollToResults();
+        }
+
+        function renderIdeasResult(itemName, ideas, isGenericFallback) {
+          showResultsSection();
+          el.resultsContainer.textContent = "";
+          el.resultsContainer.appendChild(createRecognizedBanner(itemName));
+
+          var header = document.createElement("div");
+          header.className = "results-header";
+
+          var left = document.createElement("div");
+          var h2 = document.createElement("h2");
+          h2.id = "results-heading";
+          h2.className = "results-title";
+          h2.textContent = "‘" + itemName + "’의 다음 생 아이디어 3가지";
+
+          var sub = document.createElement("p");
+          sub.className = "results-sub";
+          sub.textContent = "쉽게 구할 수 있는 재료로 안전하게 따라 할 수 있는 방법이에요.";
+
+          left.appendChild(h2);
+          left.appendChild(sub);
+
+          if (isGenericFallback) {
+            var gnote = document.createElement("p");
+            gnote.className = "generic-note";
+            gnote.textContent = "이 물건에 딱 맞는 아이디어가 아닐 수 있어요.";
+            left.appendChild(gnote);
+          }
+
+          var moreBtn = document.createElement("button");
+          moreBtn.type = "button";
+          moreBtn.className = "btn-more";
+          moreBtn.innerHTML =
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><span>다른 아이디어 보기</span>';
+          moreBtn.addEventListener("click", function () {
+            if (!state.activeItem || state.isLoading) return;
+            runIdeaSearch(state.activeItem, state.selectedImages, state.seenNames, "more", true);
+          });
+
+          header.appendChild(left);
+          header.appendChild(moreBtn);
+          el.resultsContainer.appendChild(header);
+
+          var grid = document.createElement("div");
+          grid.className = "cards-grid";
+
+          ideas.forEach(function (idea, idx) {
+            var card = document.createElement("article");
+            card.className = "idea-card";
+            card.style.animationDelay = idx * 80 + "ms";
+
+            var top = document.createElement("div");
+            top.className = "card-top";
+
+            var numBadge = document.createElement("span");
+            numBadge.className = "card-index";
+            numBadge.setAttribute("aria-hidden", "true");
+            numBadge.textContent = String(idx + 1).padStart(2, "0");
+
+            var diffBadge = document.createElement("span");
+            var diffClass =
+              idea.difficulty === "어려움"
+                ? "diff-hard"
+                : idea.difficulty === "보통"
+                  ? "diff-medium"
+                  : "diff-easy";
+            diffBadge.className = "diff-badge " + diffClass;
+            diffBadge.textContent = "난이도 · " + idea.difficulty;
+
+            top.appendChild(numBadge);
+            top.appendChild(diffBadge);
+
+            var title = document.createElement("h3");
+            title.className = "card-title";
+            title.textContent = idea.name;
+
+            var purpose = document.createElement("p");
+            purpose.className = "card-purpose";
+            purpose.textContent = idea.purpose;
+
+            var matSec = document.createElement("div");
+            matSec.className = "card-section";
+            var matTitle = document.createElement("h4");
+            matTitle.className = "card-section-label";
+            matTitle.textContent = "필요한 재료";
+            var matList = document.createElement("ul");
+            matList.className = "materials-list";
+            matList.setAttribute("aria-label", "필요한 재료 목록");
+
+            idea.materials.forEach(function (m) {
+              var li = document.createElement("li");
+              li.className = "material-tag";
+              li.textContent = m;
+              matList.appendChild(li);
+            });
+            matSec.appendChild(matTitle);
+            matSec.appendChild(matList);
+
+            var stepSec = document.createElement("div");
+            stepSec.className = "card-section grow";
+            var stepTitle = document.createElement("h4");
+            stepTitle.className = "card-section-label";
+            stepTitle.textContent = "만드는 방법";
+            var stepList = document.createElement("ol");
+            stepList.className = "steps-list";
+            stepList.setAttribute("aria-label", "제작 단계");
+
+            idea.steps.forEach(function (s, sIdx) {
+              var li = document.createElement("li");
+              li.className = "step-item";
+              var snum = document.createElement("span");
+              snum.className = "step-num";
+              snum.setAttribute("aria-hidden", "true");
+              snum.textContent = String(sIdx + 1);
+              var stxt = document.createElement("span");
+              stxt.textContent = s;
+              li.appendChild(snum);
+              li.appendChild(stxt);
+              stepList.appendChild(li);
+            });
+            stepSec.appendChild(stepTitle);
+            stepSec.appendChild(stepList);
+
+            card.appendChild(top);
+            card.appendChild(title);
+            card.appendChild(purpose);
+            card.appendChild(matSec);
+            card.appendChild(stepSec);
+
+            if (idea.safetyNote) {
+              var sbox = document.createElement("div");
+              sbox.className = "safety-box";
+              sbox.innerHTML =
+                '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>';
+              var st = document.createElement("span");
+              st.textContent = idea.safetyNote;
+              sbox.appendChild(st);
+              card.appendChild(sbox);
+            }
+
+            grid.appendChild(card);
+          });
+
+          el.resultsContainer.appendChild(grid);
+          announce("‘" + itemName + "’에 대한 새로운 업사이클링 아이디어 " + ideas.length + "가지를 찾았습니다.");
+          scrollToResults();
+        }
+
+        // ====================================================================
+        // 8. Core Search Controller (Latest-Request-Wins + Cache)
+        // ====================================================================
+        function applyOutcome(itemName, outcome, mode) {
+          if (outcome.resultType === "unclear_image") {
+            state.activeItem = null;
+            syncControls();
+            renderUnclearImage(outcome.message);
+            return;
+          }
+
+          if (outcome.resultType === "not_an_item") {
+            state.activeItem = null;
+            hideResultsSection();
+            setValidationError(outcome.message || "물건 이름을 입력해 주세요");
+            announce(outcome.message || "물건 이름을 입력해 주세요");
+            syncControls();
+            el.itemInput.focus();
+            return;
+          }
+
+          if (outcome.resultType === "needs_confirmation") {
+            state.activeItem = null;
+            syncControls();
+            renderNeedsConfirmation({
+              title: "혹시 이 물건인가요?",
+              subtitle:
+                "가장 알맞은 물건을 선택하거나 직접 이름을 입력하면 바로 맞춤형 아이디어를 만들어 드려요.",
+              candidates: outcome.candidates || [],
+              recognition: outcome.recognition,
+            });
+            return;
+          }
+
+          var resolvedName = outcome.detectedItem || itemName;
+          state.activeItem = resolvedName;
+          state.detectedItemLabel = resolvedName;
+
+          if (outcome.resultType === "disposal" && outcome.disposal) {
+            syncControls();
+            renderDisposalResult(resolvedName, outcome.disposal);
+            return;
+          }
+
+          var nextIdeas = (outcome.ideas || []).slice(0, 3);
+          var returnedNames = nextIdeas.map(function (i) { return i.name; });
+          if (mode === "fresh") {
+            state.seenNames = returnedNames;
+          } else {
+            var allSeen = returnedNames.every(function (n) {
+              return state.seenNames.indexOf(n) !== -1;
+            });
+            state.seenNames = allSeen
+              ? returnedNames
+              : Array.from(new Set(state.seenNames.concat(returnedNames)));
+          }
+
+          syncControls();
+          renderIdeasResult(resolvedName, nextIdeas, Boolean(outcome.isGenericFallback));
+        }
+
+        function runIdeaSearch(itemName, images, excludeNames, mode, confirmed) {
+          var mySeq = ++state.requestSeq;
+          var hasText = String(itemName || "").trim().length > 0;
+          var hasPhotos = images && images.length > 0;
+
+          var cacheKey = JSON.stringify({
+            item: String(itemName || "").trim().toLowerCase(),
+            imgs: (images || []).map(function (i) { return i.signature; }),
+            excludes: excludeNames || [],
+            confirmed: Boolean(confirmed),
+          });
+
+          if (state.resultCache.has(cacheKey)) {
+            setValidationError(null);
+            applyOutcome(itemName, state.resultCache.get(cacheKey), mode);
+            return;
+          }
+
+          // Photo-only without text input: check clarity and ask user to pick or type item name
+          if (hasPhotos && !hasText) {
+            var anyUnclear = images.every(function (img) { return img.isUnclear; });
+            if (anyUnclear) {
+              applyOutcome("", {
+                resultType: "unclear_image",
+                message: "더 가까이, 밝은 곳에서 찍어 주세요",
+              }, mode);
+              return;
+            }
+            var candidates = inferCandidateFromFilenames(images);
+            setValidationError(null);
+            showResultsSection();
+            renderNeedsConfirmation({
+              title: "사진 속 물건 이름을 알려주세요",
+              subtitle:
+                "아래 후보에서 선택하거나 물건 이름을 직접 입력하면 바로 아이디어 3가지를 만들어 드려요.",
+              candidates: candidates,
+            });
+            requestAnimationFrame(function () {
+              var custom = document.getElementById("confirm-custom-item");
+              if (custom) custom.focus();
+            });
+            return;
+          }
+
+          state.isLoading = true;
+          setValidationError(null);
+          state.activeItem = itemName;
+          syncControls();
+          renderSkeleton(itemName);
+          announce("‘" + itemName + "’ 재사용 아이디어를 생성하고 있습니다.");
+
+          // Brief non-blocking tick so loading skeleton and disabled state are cleanly applied and superseding works deterministically
+          setTimeout(function () {
+            if (mySeq !== state.requestSeq) return;
+            var outcome = generateLocalIdeas(itemName, excludeNames, Boolean(confirmed));
+            state.isLoading = false;
+            if (outcome.resultType === "ideas" || outcome.resultType === "disposal" || outcome.resultType === "needs_confirmation") {
+              state.resultCache.set(cacheKey, outcome);
+            }
+            applyOutcome(itemName, outcome, mode);
+          }, 180);
+        }
+
+        // ====================================================================
+        // 9. Event Listeners
+        // ====================================================================
+        el.itemInput.addEventListener("input", function (e) {
+          state.inputValue = e.target.value;
+          setValidationError(null);
+          syncControls();
+        });
+
+        el.clearInputBtn.addEventListener("click", function () {
+          state.inputValue = "";
+          el.itemInput.value = "";
+          setValidationError(null);
+          syncControls();
+          el.itemInput.focus();
+        });
+
+        el.photoCameraBtn.addEventListener("click", function () {
+          if (state.isLoading || state.isProcessingImage) return;
+          el.cameraFileInput.click();
+        });
+
+        el.galleryPickBtn.addEventListener("click", function () {
+          if (state.isLoading || state.isProcessingImage) return;
+          el.galleryFileInput.click();
+        });
+
+        el.photoAddBtn.addEventListener("click", function () {
+          if (state.isLoading || state.isProcessingImage) return;
+          el.galleryFileInput.click();
+        });
+
+        async function handleFilesSelected(e) {
+          var files = Array.prototype.slice.call(e.target.files || []);
+          e.target.value = "";
+          if (files.length === 0) return;
+
+          var remaining = MAX_UPLOAD_IMAGES - state.selectedImages.length;
+          if (remaining <= 0) {
+            setValidationError("사진은 최대 " + MAX_UPLOAD_IMAGES + "장까지 올릴 수 있어요.");
+            return;
+          }
+
+          var toProcess = files.slice(0, remaining);
+          var exceeded = files.length > remaining;
+
+          state.isProcessingImage = true;
+          setValidationError(null);
+          syncControls();
+
+          try {
+            var processed = [];
+            for (var i = 0; i < toProcess.length; i++) {
+              processed.push(await compressImageForUpload(toProcess[i]));
+            }
+            state.selectedImages = state.selectedImages.concat(processed);
+            if (exceeded) {
+              setValidationError("사진은 최대 " + MAX_UPLOAD_IMAGES + "장까지만 추가되었어요.");
+            }
+          } catch (err) {
+            setValidationError(
+              err && err.message ? err.message : "사진 파일만 올려 주세요."
+            );
+          } finally {
+            state.isProcessingImage = false;
+            syncControls();
+          }
+        }
+
+        el.cameraFileInput.addEventListener("change", handleFilesSelected);
+        el.galleryFileInput.addEventListener("change", handleFilesSelected);
+
+        el.searchForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (state.isLoading || state.isProcessingImage) return;
+
+          var raw = el.itemInput.value;
+          var trimmed = raw.trim();
+
+          if (!trimmed) {
+            if (state.selectedImages.length > 0) {
+              state.seenNames = [];
+              runIdeaSearch("", state.selectedImages, [], "fresh", false);
+              return;
+            }
+            var emptyMsg = "버리려는 물건을 먼저 입력해 주세요.";
+            setValidationError(emptyMsg);
+            announce(emptyMsg);
+            el.itemInput.focus();
+            return;
+          }
+
+          var v = validateItemInput(raw);
+          if (!v.valid) {
+            setValidationError(v.message || "버리려는 물건을 먼저 입력해 주세요.");
+            announce(v.message || "입력 오류");
+            return;
+          }
+
+          if (v.isPromptInjection) {
+            hideResultsSection();
+            state.activeItem = null;
+            setValidationError("물건 이름을 입력해 주세요");
+            announce("물건 이름을 입력해 주세요");
+            syncControls();
+            el.itemInput.focus();
+            return;
+          }
+
+          state.inputValue = v.normalized;
+          el.itemInput.value = v.normalized;
+          state.seenNames = [];
+          syncControls();
+          runIdeaSearch(v.normalized, state.selectedImages, [], "fresh", false);
+        });
+
+        el.brandResetBtn.addEventListener("click", function () {
+          state.requestSeq += 1;
+          state.isLoading = false;
+          state.isProcessingImage = false;
+          state.inputValue = "";
+          el.itemInput.value = "";
+          state.selectedImages = [];
+          state.activeItem = null;
+          state.detectedItemLabel = null;
+          state.seenNames = [];
+          setValidationError(null);
+          announce("");
+          hideResultsSection();
+          syncControls();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        var initialCleanHtml = "";
+        var downloadResetTimer = null;
+
+        function captureCleanHtml() {
+          if (!initialCleanHtml && document.documentElement) {
+            initialCleanHtml = "<!doctype html>\n" + document.documentElement.outerHTML;
+          }
+        }
+
+        async function downloadIndexHtml() {
+          if (el.downloadHtmlBtn) el.downloadHtmlBtn.disabled = true;
+          try {
+            var htmlContent = "";
+            if (
+              window.location &&
+              (window.location.protocol === "http:" || window.location.protocol === "https:")
+            ) {
+              try {
+                var targetUrl = window.location.href.split("#")[0];
+                var res = await fetch(targetUrl, { cache: "no-store" });
+                if (res && res.ok) {
+                  var fetched = await res.text();
+                  if (
+                    fetched &&
+                    (fetched.indexOf("<!doctype html") !== -1 ||
+                      fetched.indexOf("<!DOCTYPE html") !== -1 ||
+                      fetched.indexOf("<html") !== -1)
+                  ) {
+                    htmlContent = fetched;
+                  }
+                }
+              } catch (_fetchErr) {
+                // Offline or network failure falls back to captured clean HTML
+              }
+            }
+            if (!htmlContent) {
+              captureCleanHtml();
+              htmlContent = initialCleanHtml;
+            }
+            var blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+            var blobUrl = URL.createObjectURL(blob);
+            var link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = "index.html";
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(function () {
+              URL.revokeObjectURL(blobUrl);
+            }, 1000);
+
+            if (el.downloadHtmlLabel) {
+              el.downloadHtmlLabel.textContent = "다운로드 완료";
+              if (downloadResetTimer) clearTimeout(downloadResetTimer);
+              downloadResetTimer = setTimeout(function () {
+                if (el.downloadHtmlLabel) {
+                  el.downloadHtmlLabel.textContent = "index.html 다운로드";
+                }
+              }, 2000);
+            }
+            announce("index.html 파일 다운로드를 시작했어요.");
+          } catch (_err) {
+            announce("index.html 파일 다운로드에 실패했어요.");
+          } finally {
+            if (el.downloadHtmlBtn) el.downloadHtmlBtn.disabled = false;
+          }
+        }
+
+        if (el.downloadHtmlBtn) {
+          el.downloadHtmlBtn.addEventListener("click", downloadIndexHtml);
+        }
+
+        window.addEventListener("online", syncOfflineBanner);
+        window.addEventListener("offline", syncOfflineBanner);
+
+        // Initial render (capture pristine HTML before DOM mutations)
+        function initApp() {
+          captureCleanHtml();
+          syncOfflineBanner();
+          syncControls();
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initApp);
+        } else {
+          initApp();
+        }
+      })();
+    </script>
+  </body>
+</html>
